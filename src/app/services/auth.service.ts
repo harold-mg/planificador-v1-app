@@ -31,8 +31,23 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  /* register(user: UserRegister): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, user);
+  } */
+
   // Eliminar token al cerrar sesión
   clearToken(): void {
     localStorage.removeItem('token');
+  }
+  // Obtener los datos del usuario autenticado
+  getUser(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user`, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    });
+  }
+  register(userData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, userData);
   }
 }

@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+    <h1>Bienvenido al Dashboard</h1>
+  
+    <!-- Mostrar el botón solo si el usuario es planificador -->
+    <button *ngIf="esPlanificador" (click)="irARegistroUsuario()">
+      Registrar Nuevo Usuario
+    </button>
+  </div>
+  
