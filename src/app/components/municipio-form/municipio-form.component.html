@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>Registrar Municipio</h2>
+  
+    <form [formGroup]="municipioForm" (ngSubmit)="onSubmit()">
+      <!-- Campo de nombre -->
+      <div class="form-group">
+        <label for="nombre">Nombre del Municipio</label>
+        <input id="nombre" formControlName="nombre" type="text" class="form-control" />
+        <small class="text-danger" *ngIf="getErrorMessage('nombre')">{{ getErrorMessage('nombre') }}</small>
+      </div>
+  
+      <!-- Campo de selección de coordinación -->
+      <div class="form-group">
+        <label for="coordinacion_id">Coordinación</label>
+        <select id="coordinacion_id" formControlName="coordinacion_id" class="form-control">
+          <option [ngValue]="null">Seleccione una Coordinación</option>
+          <option *ngFor="let coordinacion of coordinaciones" [ngValue]="coordinacion.id">
+            {{ coordinacion.nombre }}
+          </option>
+        </select>
+        <small class="text-danger" *ngIf="getErrorMessage('coordinacion_id')">{{ getErrorMessage('coordinacion_id') }}</small>
+      </div>
+  
+      <!-- Botón para enviar -->
+      <button type="submit" class="btn btn-primary" [disabled]="municipioForm.invalid">Registrar Municipio</button>
+      <br><a routerLink="/dashboard">principal</a>
+      
+      <!-- Mostrar errores generales -->
+      <div *ngIf="errors.general" class="alert alert-danger">
+        {{ errors.general }}
+      </div>
+    </form>
+  </div>
+  

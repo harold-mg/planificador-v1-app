@@ -1,0 +1,13 @@
+<form (ngSubmit)="registrarArea()">
+    <label for="nombre">Nombre del área</label>
+    <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" required>
+  
+    <label for="unidad">Unidad</label>
+    <select id="unidad" [(ngModel)]="unidad_id" name="unidad_id" required>
+      <option *ngFor="let unidad of unidades" [value]="unidad.id">{{ unidad.nombre }}</option>
+    </select>
+  
+    <button type="submit">Registrar Área</button>
+    <br><a routerLink="/dashboard">principal</a>
+  </form>
+  

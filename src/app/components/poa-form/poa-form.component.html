@@ -1,0 +1,36 @@
+<form [formGroup]="poaForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="codigo_poa">Código POA:</label>
+      <input id="codigo_poa" formControlName="codigo_poa">
+      <div *ngIf="poaForm.get('codigo_poa')?.invalid && (poaForm.get('codigo_poa')?.touched || poaForm.get('codigo_poa')?.dirty)">
+        {{ getErrorMessage('codigo_poa') }}
+      </div>
+    </div>
+  
+    <div>
+      <label for="operacion">Operación:</label>
+      <textarea id="operacion" formControlName="operacion" rows="4" cols="50"></textarea>
+      <div *ngIf="poaForm.get('operacion')?.invalid && (poaForm.get('operacion')?.touched || poaForm.get('operacion')?.dirty)">
+        {{ getErrorMessage('operacion') }}
+      </div>
+    </div>
+  
+        <!-- Campo Unidad -->
+    <label for="unidad">Unidad</label>
+    <select formControlName="unidad_id">
+        <option *ngFor="let unidad of unidades" [value]="unidad.id">{{ unidad.nombre }}</option>
+    </select>
+    
+    <!-- Campo Área (opcional) -->
+    <label for="area">Área (opcional)</label>
+    <select formControlName="area_id">
+        <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
+    </select>
+      
+    <br>
+    <button type="submit">Registrar POA</button>
+    <br><a routerLink="/dashboard">principal</a>
+
+    <div *ngIf="errors.general">{{ errors.general }}</div>
+  </form>
+  

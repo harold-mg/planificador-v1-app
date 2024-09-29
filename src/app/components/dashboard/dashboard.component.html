@@ -4,6 +4,24 @@
     <!-- Mostrar el botón solo si el usuario es planificador -->
     <button *ngIf="esPlanificador" (click)="irARegistroUsuario()">
       Registrar Nuevo Usuario
+    </button><br>
+    <button *ngIf="esPlanificador" (click)="irARegistroUnidad()">
+      Registrar Nueva Unidad
     </button>
-  </div>
+    <button *ngIf="esPlanificador" (click)="irARegistroArea()">
+      Registrar Nueva Area
+    </button>
+    <button *ngIf="esPlanificador" (click)="irARegistroPoa()">
+      Registrar Nuevo POA
+    </button><br>
+    <button *ngIf="esPlanificador" (click)="irARegistroCoordinacion()">
+      Registrar Nueva Coordinacion
+    </button>
+    <button *ngIf="esPlanificador" (click)="irARegistroMunicipio()">
+      Registrar Nuevo Municipio
+    </button>
+    <button *ngIf="esPlanificador" (click)="irARegistroCentroSalud()">
+      Registrar Nuevo Centro de Salud
+    </button>
+</div>
   

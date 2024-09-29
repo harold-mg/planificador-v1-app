@@ -31,5 +31,29 @@ export class DashboardComponent implements OnInit {
     // Redirigir a la página de registro de usuario
     this.router.navigate(['/registrar-usuario']);
   }
+  irARegistroUnidad() {
+    // Redirigir a la página de registro de usuario
+    this.router.navigate(['/registrar-unidad']);
+  }
+  irARegistroArea() {
+    // Redirigir a la página de registro de area
+    this.router.navigate(['/registrar-area']);
+  }
+  irARegistroPoa() {
+    // Redirigir a la página de registro de area
+    this.router.navigate(['/registrar-poa']);
+  }
+  irARegistroCoordinacion() {
+    // Redirigir a la página de registro de area
+    this.router.navigate(['/registrar-coordinacion']);
+  }
+  irARegistroMunicipio() {
+    // Redirigir a la página de registro de area
+    this.router.navigate(['/registrar-municipio']);
+  }
+  irARegistroCentroSalud() {
+    // Redirigir a la página de registro de area
+    this.router.navigate(['/registrar-centro-salud']);
+  }
 }
 

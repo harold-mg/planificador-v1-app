@@ -1,6 +1,32 @@
 <h2>Registrar Usuario</h2>
 
 <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+  <!-- <input formControlName="formControl" [disabled]="registroForm.controls['formControl'].disabled" /> -->
+  <!-- Rol -->
+  <div class="form-group">
+    <label for="rol">Rol:</label>
+    <select class="form-control" id="rol" formControlName="rol" required (change)="onRoleChange($event)">
+      <option value="responsable_area">Responsable de Área</option>
+      <option value="responsable_unidad">Responsable de Unidad</option>
+      <option value="planificador">Planificador</option>
+    </select>
+  </div>
+  <!-- Selección de Unidad (Siempre visible para Responsable de Área y Responsable de Unidad) -->
+  <div *ngIf="isAreaRole || isUnidadRole" class="form-group">
+    <label for="unidad_id">Unidad:</label>
+    <select class="form-control" id="unidad_id" formControlName="unidad_id" required (change)="onUnidadChange($event)">
+      <option *ngFor="let unidad of unidades" [value]="unidad.id">{{ unidad.nombre }}</option>
+    </select>
+  </div>
+
+  <!-- Selección de Área (Solo visible para Responsable de Área) -->
+  <div *ngIf="isAreaRole && registerForm.get('unidad_id')?.value" class="form-group">
+    <label for="area_id">Área:</label>
+    <select class="form-control" id="area_id" formControlName="area_id" required>
+      <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
+    </select>
+  </div>
+
   <div class="form-group">
     <label for="nombre">Nombre:</label>
     <input type="text" class="form-control" id="nombre" required formControlName="nombre" />
@@ -41,21 +67,19 @@
     </div>
   </div>
 
-  <!-- Rol -->
-  <div class="form-group">
-    <label for="rol">Rol:</label>
-    <select class="form-control" id="rol" formControlName="rol" required>
-      <option value="responsable_area">Responsable de Área</option>
-      <option value="responsable_unidad">Responsable de Unidad</option>
-      <option value="planificador">Planificador</option>
-    </select>
-  </div>
+  
 
   <!-- Botón de Registro -->
   <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrar</button>
 
-  <!-- Errores generales -->
-  <div class="alert alert-danger" *ngIf="errors.general">
+  <!-- Mostrar el error de nombre de usuario duplicado -->
+  <div *ngIf="errors?.nombre_usuario" class="alert alert-danger">
+    {{ errors.nombre_usuario[0] }}
+  </div>
+
+  <!-- Mensaje de error general si hay otros errores -->
+  <div *ngIf="errors?.general" class="alert alert-danger">
     {{ errors.general }}
   </div>
+  <br><a routerLink="/dashboard">principal</a>
 </form>
