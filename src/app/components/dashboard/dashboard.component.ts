@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/registrar-usuario']);
   }
   irARegistroUnidad() {
-    // Redirigir a la página de registro de usuario
+    // Redirigir a la página de registro de unidad
     this.router.navigate(['/registrar-unidad']);
   }
   irARegistroArea() {
@@ -40,20 +40,32 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/registrar-area']);
   }
   irARegistroPoa() {
-    // Redirigir a la página de registro de area
+    // Redirigir a la página de registro de poa
     this.router.navigate(['/registrar-poa']);
   }
+  irARegistroOperacion() {
+    // Redirigir a la página de registro de operacion
+    this.router.navigate(['/registrar-operaciones']);
+  }
   irARegistroCoordinacion() {
-    // Redirigir a la página de registro de area
+    // Redirigir a la página de registro de coordinacion
     this.router.navigate(['/registrar-coordinacion']);
   }
   irARegistroMunicipio() {
-    // Redirigir a la página de registro de area
+    // Redirigir a la página de registro de municipio
     this.router.navigate(['/registrar-municipio']);
   }
   irARegistroCentroSalud() {
-    // Redirigir a la página de registro de area
+    // Redirigir a la página de registro de centro salud
     this.router.navigate(['/registrar-centro-salud']);
+  }
+  irARegistroVehiculo() {
+    // Redirigir a la página de registro de vehiculo
+    this.router.navigate(['/registrar-vehiculo']);
+  }
+  irARegistroActividadVehiculo() {
+    // Redirigir a la página de registro de vehiculo
+    this.router.navigate(['/actividad-vehiculo']);
   }
 }
 

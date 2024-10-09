@@ -9,6 +9,9 @@ import { PoaFormComponent } from './components/poa-form/poa-form.component';
 import { CoordinacionFormComponent } from './components/coordinacion-form/coordinacion-form.component';
 import { MunicipioFormComponent } from './components/municipio-form/municipio-form.component';
 import { CentroSaludFormComponent } from './components/centro-salud-form/centro-salud-form.component';
+import { VehiculoFormComponent } from './components/vehiculo-form/vehiculo-form.component';
+import { ActividadVehiculoFormComponent } from './components/actividad-vehiculo-form/actividad-vehiculo-form.component';
+import { OperacionesFormComponent } from './components/operaciones-form/operaciones-form.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
   {path: 'registrar-coordinacion', component: CoordinacionFormComponent},
   {path: 'registrar-municipio', component: MunicipioFormComponent},
   {path: 'registrar-centro-salud', component: CentroSaludFormComponent},
+  {path: 'registrar-vehiculo', component: VehiculoFormComponent},
+  {path: 'actividad-vehiculo', component: ActividadVehiculoFormComponent},
+  { path: 'registrar-operaciones', component: OperacionesFormComponent},
 
   { path: '**', redirectTo: 'login' }  // Redirección por defecto
   //{path: '', redirectTo: '/dasboard', pathMatch:'full'}

@@ -1,0 +1,26 @@
+<form [formGroup]="operacionesForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="poa_id">Código POA:</label>
+      <select id="poa_id" formControlName="poa_id">
+        <option *ngFor="let poa of poas" [value]="poa.id">{{ poa.codigo_poa }}</option> <!-- Usa poa.id en value -->
+      </select>
+      <div *ngIf="operacionesForm.get('poa_id')?.invalid && (operacionesForm.get('poa_id')?.touched || operacionesForm.get('poa_id')?.dirty)">
+        {{ getErrorMessage('poa_id') }}
+      </div>
+    </div>
+    
+    <div>
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" formControlName="descripcion" rows="4" cols="50"></textarea>
+      <div *ngIf="operacionesForm.get('descripcion')?.invalid && (operacionesForm.get('descripcion')?.touched || operacionesForm.get('descripcion')?.dirty)">
+        {{ getErrorMessage('descripcion') }}
+      </div>
+    </div>
+  
+    <br>
+    <button type="submit">Registrar Operación</button>
+    <br><a routerLink="/dashboard">principal</a>
+  
+    <div *ngIf="errors.general">{{ errors.general }}</div>
+  </form>
+  

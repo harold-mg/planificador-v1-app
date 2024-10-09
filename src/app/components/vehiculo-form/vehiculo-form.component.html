@@ -1,0 +1,20 @@
+<form [formGroup]="vehiculoForm">
+    <div class="form-group">
+      <label for="placa">Placa:</label>
+      <input formControlName="placa" type="text" class="form-control" id="placa" placeholder="Placa del Vehículo">
+    </div>
+  
+    <div class="form-group">
+      <label for="modelo">Modelo:</label>
+      <input formControlName="modelo" type="text" class="form-control" id="modelo" placeholder="Modelo del Vehículo">
+    </div>
+  
+    <div class="form-group">
+      <label for="disponible">Disponible:</label>
+      <input formControlName="disponible" type="checkbox" class="form-check-input" id="disponible">
+    </div>
+  
+    <button (click)="registerVehiculo()" class="btn btn-primary" [disabled]="vehiculoForm.invalid">Registrar Vehículo</button>
+  </form>
+  <br><a routerLink="/dashboard">principal</a>
+  

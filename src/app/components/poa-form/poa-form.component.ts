@@ -21,7 +21,7 @@ export class PoaFormComponent implements OnInit {
   ) {
     this.poaForm = this.fb.group({
       codigo_poa: ['', Validators.required], // Campo para código POA
-      operacion: ['', Validators.required], // Campo para operación
+      //operacion: ['', Validators.required], // Campo para operación
       area_id: [null], // Campo para seleccionar área
       unidad_id: [null, Validators.required], // Campo para seleccionar unidad
     });

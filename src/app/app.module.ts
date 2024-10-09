@@ -16,6 +16,9 @@ import { PoaFormComponent } from './components/poa-form/poa-form.component';
 import { CoordinacionFormComponent } from './components/coordinacion-form/coordinacion-form.component';
 import { MunicipioFormComponent } from './components/municipio-form/municipio-form.component';
 import { CentroSaludFormComponent } from './components/centro-salud-form/centro-salud-form.component';
+import { VehiculoFormComponent } from './components/vehiculo-form/vehiculo-form.component';
+import { ActividadVehiculoFormComponent } from './components/actividad-vehiculo-form/actividad-vehiculo-form.component';
+import { OperacionesFormComponent } from './components/operaciones-form/operaciones-form.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { CentroSaludFormComponent } from './components/centro-salud-form/centro-
     PoaFormComponent,
     CoordinacionFormComponent,
     MunicipioFormComponent,
-    CentroSaludFormComponent
+    CentroSaludFormComponent,
+    VehiculoFormComponent,
+    ActividadVehiculoFormComponent,
+    OperacionesFormComponent
   ],
   imports: [
     BrowserModule,

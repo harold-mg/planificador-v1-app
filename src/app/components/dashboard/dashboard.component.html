@@ -4,7 +4,7 @@
     <!-- Mostrar el botón solo si el usuario es planificador -->
     <button *ngIf="esPlanificador" (click)="irARegistroUsuario()">
       Registrar Nuevo Usuario
-    </button><br>
+    </button><br><br>
     <button *ngIf="esPlanificador" (click)="irARegistroUnidad()">
       Registrar Nueva Unidad
     </button>
@@ -13,7 +13,10 @@
     </button>
     <button *ngIf="esPlanificador" (click)="irARegistroPoa()">
       Registrar Nuevo POA
-    </button><br>
+    </button>
+    <button *ngIf="esPlanificador" (click)="irARegistroOperacion()">
+      Registrar Nueva OPERCION
+    </button><br><br>
     <button *ngIf="esPlanificador" (click)="irARegistroCoordinacion()">
       Registrar Nueva Coordinacion
     </button>
@@ -22,6 +25,13 @@
     </button>
     <button *ngIf="esPlanificador" (click)="irARegistroCentroSalud()">
       Registrar Nuevo Centro de Salud
+    </button><br><br>
+    <button *ngIf="esPlanificador" (click)="irARegistroVehiculo()">
+      Registrar Nuevo vehiculo
+    </button><br><br>
+    <button *ngIf="esPlanificador" (click)="irARegistroActividadVehiculo()">
+      Registrar ACTIVIDAD CON VEHICULO
     </button>
+
 </div>
   
