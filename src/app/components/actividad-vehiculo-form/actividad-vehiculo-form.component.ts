@@ -171,6 +171,9 @@ export class ActividadVehiculoFormComponent implements OnInit {
       this.loading = true;
       this.actividadService.createActividadVehiculo(this.actividadForm.value).subscribe({
         next: () => {
+          console.log('actividad registrada exitosamente:');
+          alert('Actividad con vehículo registrada exitosamente');
+          this.actividadForm.reset();
           this.router.navigate(['/actividad-vehiculo']);
         },
         error: (err) => {

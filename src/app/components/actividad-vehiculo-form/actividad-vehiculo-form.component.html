@@ -50,7 +50,8 @@
       <div>
         <label for="coordinacion">Coordinación</label>
         <select id="coordinacion" (change)="onCoordinacionSelected($event)">
-          <option *ngFor="let coordinacion of coordinaciones" [value]="coordinacion.id">{{ coordinacion.nombre }}</option>
+            <option value="">Seleccione Coordinacion</option>
+            <option *ngFor="let coordinacion of coordinaciones" [value]="coordinacion.id">{{ coordinacion.nombre }}</option>
         </select>
       </div>
       
@@ -84,6 +85,8 @@
       <button type="submit" class="btn btn-primary" [disabled]="loading">Planificar Actividad</button>
   </form>
 </div>
+<br><a routerLink="/dashboard">principal</a>
+
 
 <!-- <div class="container">
     <h2>Planificar Actividad de Vehículo</h2>
