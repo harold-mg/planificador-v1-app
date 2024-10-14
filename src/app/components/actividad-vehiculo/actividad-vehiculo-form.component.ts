@@ -173,8 +173,9 @@ export class ActividadVehiculoFormComponent implements OnInit {
         next: () => {
           console.log('actividad registrada exitosamente:');
           alert('Actividad con vehículo registrada exitosamente');
-          this.actividadForm.reset();
-          this.router.navigate(['/actividad-vehiculo']);
+          //this.actividadForm.reset();
+          window.location.reload();
+          //this.router.navigate(['/actividad-vehiculo']);
         },
         error: (err) => {
           console.error('Error al planificar la actividad:', err);

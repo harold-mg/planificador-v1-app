@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registrar-area',
-  templateUrl: './registrar-area.component.html',
-  styleUrls: ['./registrar-area.component.scss']
+  selector: 'app-area-form',
+  templateUrl: './area-form.component.html',
+  styleUrls: ['./area-form.component.scss']
 })
-export class RegistrarAreaComponent implements OnInit {
+export class AreaFormComponent implements OnInit {
   nombre: string = '';
   unidad_id: number | null = null;
   unidades: any[] = []; // Cambia el tipo según tu modelo

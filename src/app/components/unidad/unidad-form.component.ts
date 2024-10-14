@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UnidadService } from '../../services/unidad.service'; // Servicio para interactuar con la API
 
 @Component({
-  selector: 'app-registrar-unidad',
-  templateUrl: './registrar-unidad.component.html',
+  selector: 'app-unidad-form',
+  templateUrl: './unidad-form.component.html',
+  styleUrls: ['./unidad-form.component.scss']
 })
-export class RegistrarUnidadComponent {
+export class UnidadFormComponent {
   unidadForm: FormGroup;
   errorMessage: string | null = null;
 

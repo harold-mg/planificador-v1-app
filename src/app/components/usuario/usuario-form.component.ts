@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-registro-usuario',
-  templateUrl: './registro-usuario.component.html',
-  styleUrls: ['./registro-usuario.component.scss']
+  selector: 'app-usuario-form',
+  templateUrl: './usuario-form.component.html',
+  styleUrls: ['./usuario-form.component.scss']
 })
-export class RegistroUsuarioComponent implements OnInit {
+export class UsuarioFormComponent implements OnInit {
   registerForm: FormGroup;
   errors: any = {};  // Para almacenar los errores
   areas: any[] = []; // Almacena las áreas obtenidas del backend

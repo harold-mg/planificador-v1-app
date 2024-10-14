@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Editar Área</h2>
+  
+    <form [formGroup]="areaForm" (ngSubmit)="actualizarArea()">
+      <div class="form-group">
+        <label for="nombre">Nombre del Área</label>
+        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="areaForm.invalid">Guardar Cambios</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      <!-- <button type="button" class="btn btn-secondary" (click)="router.navigate(['/ver-areas'])">Cancelar</button> -->
+    </form>
+  </div>
+  

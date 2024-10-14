@@ -63,9 +63,19 @@ export class DashboardComponent implements OnInit {
     // Redirigir a la página de registro de vehiculo
     this.router.navigate(['/registrar-vehiculo']);
   }
+  irAEditUnidad() {
+    // Redirigir a la página de edit unidad
+    this.router.navigate(['/ver-unidad']);
+  }
+  irAEditArea() {
+    // Redirigir a la página de edit unidad
+    this.router.navigate(['/ver-area']);
+  }
   irARegistroActividadVehiculo() {
-    // Redirigir a la página de registro de vehiculo
+    // Redirigir a la página de actividad-vehiculo
     this.router.navigate(['/actividad-vehiculo']);
   }
+  
+
 }
 

@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Lista de Áreas</h2>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre del Área</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let area of areas">
+          <td>{{ area.nombre }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editarArea(area.id)">Editar</button>
+            <button class="btn btn-danger" (click)="eliminarArea(area.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <button class="btn btn-success" routerLink="/registrar-area">Crear Nueva Área</button>
+    <br><a routerLink="/dashboard">principal</a>
+
+  </div>
+
+  

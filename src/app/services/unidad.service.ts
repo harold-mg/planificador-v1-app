@@ -14,12 +14,27 @@ export class UnidadService {
     return this.http.post(this.apiUrl, unidad);
   }
 
-  obtenerUnidades(): Observable<any> {
+  // Método para obtener todas las unidades
+  getUnidades(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
 
-  obtenerUnidad(id: number): Observable<any> {
+/*   obtenerUnidad(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  } */
+
+  // Obtener una unidad por su ID
+  getUnidadById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
+  // Actualizar una unidad
+  updateUnidad(id: number, unidad: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, unidad);
+  }
+  // Eliminar una unidad
+  deleteUnidad(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
 }
 

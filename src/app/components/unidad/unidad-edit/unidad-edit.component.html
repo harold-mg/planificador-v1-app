@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Editar Unidad</h2>
+  
+    <form [formGroup]="unidadForm" (ngSubmit)="actualizarUnidad()">
+      <div class="form-group">
+        <label for="nombre">Nombre de la Unidad</label>
+        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="unidadForm.invalid">Guardar Cambios</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      <!-- <button type="button" class="btn btn-secondary" (click)="router.navigate(['/ver-unidades'])">Cancelar</button> -->
+    </form>
+  </div>
+  
