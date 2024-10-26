@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsuarioFormComponent } from './components/usuario/usuario-form.component';
 import { UnidadFormComponent } from './components/unidad/unidad-form.component';
 import { AreaFormComponent } from './components/area/area-form.component';
@@ -18,8 +18,16 @@ import { UnidadEditComponent } from './components/unidad/unidad-edit/unidad-edit
 import { AreaListComponent } from './components/area/area-list/area-list.component';
 import { AreaEditComponent } from './components/area/area-edit/area-edit.component';
 
+import { AprobarConvUnidadComponent } from './components/actividad-vehiculo/aprobar-conv-unidad/aprobar-conv-unidad.component';
+import { AprobarConvPlanificadorComponent } from './components/actividad-vehiculo/aprobar-conv-planificador/aprobar-conv-planificador.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { ActividadConvEditComponent } from './components/actividad-vehiculo/actividad-conv-edit/actividad-conv-edit.component';
+
+
 const routes: Routes = [
+  //PAGINAS
   {path: 'login', component: LoginComponent },
+  {path: 'inicio', component: InicioComponent},
   {path: 'dashboard', component: DashboardComponent},
   //DIRECCIONES DONDE SE REGISTRAN NUEVOS DATOS
   {path: 'registrar-usuario', component: UsuarioFormComponent},
@@ -31,6 +39,7 @@ const routes: Routes = [
   {path: 'registrar-centro-salud', component: CentroSaludFormComponent},
   {path: 'registrar-vehiculo', component: VehiculoFormComponent},
   { path: 'registrar-operaciones', component: OperacionesFormComponent},
+  //CREACION DE ACTIVIDADES
   {path: 'actividad-vehiculo', component: ActividadVehiculoFormComponent},
   //DIRECCIONES PARA VER LOS COMPONENTES
   { path: 'ver-unidad', component: UnidadListComponent },
@@ -39,6 +48,10 @@ const routes: Routes = [
   //DIRECCIONES PARA EDITAR COMPONENTES
   { path: 'editar-unidad/:id', component: UnidadEditComponent },
   { path: 'editar-area/:id', component: AreaEditComponent },
+  {path: 'editar-conv/:id', component: ActividadConvEditComponent},
+  //DIRECCIONES PARA APROBAR ACTIVIDADES
+  { path: 'aprobar-convehi-unidad', component: AprobarConvUnidadComponent },
+  {path:'aprobar-convehi-planificador', component: AprobarConvPlanificadorComponent},
   //
   { path: '**', redirectTo: 'login' }  // Redirección por defecto
   //{path: '', redirectTo: '/dasboard', pathMatch:'full'}

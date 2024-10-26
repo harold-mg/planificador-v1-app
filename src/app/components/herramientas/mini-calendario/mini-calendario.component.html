@@ -1,0 +1,26 @@
+<!-- <div>
+    <label for="fecha">Selecciona una fecha:</label>
+    <input type="date" id="fecha" [(ngModel)]="selectedDate" />
+    <p>Fecha seleccionada: {{ selectedDate | date }}</p>
+  </div> -->
+  <div class="calendario">
+    <div class="header">
+      <button (click)="previousMonth()">&#9664;</button>
+      <h2>{{ month + 1 }} / {{ year }}</h2>
+      <button (click)="nextMonth()">&#9654;</button>
+    </div>
+    <div class="dias-semana">
+      <div class="dia-semana" *ngFor="let dia of diasSemana">
+        {{ dia }}
+      </div>
+    </div>
+    <div class="dias">
+      <div class="dia" *ngFor="let day of days">
+        {{ day }}
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  

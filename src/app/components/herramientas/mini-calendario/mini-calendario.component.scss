@@ -1,0 +1,60 @@
+* {
+    margin: 7%;
+}
+.calendario {
+    margin-top: 5%;
+    width: 220px; /* Ajustar al ancho del sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    .header {
+      display: flex;
+      align-items: center;
+  
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        margin: 0 10px;
+      }
+  
+      h2 {
+        margin: 0;
+        font-size: 1rem; /* Reducir el tamaño del texto */
+      }
+    }
+  
+    .dias-semana {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 17px; /* Reducir el espacio entre días de la semana */
+      margin-top: 10px;
+      font-weight: bold;
+  
+      .dia-semana {
+        text-align: center;
+        font-size: 0.9rem; /* Ajustar el tamaño del texto */
+      }
+    }
+  
+    .dias {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px; /* Reducir el espacio entre días */
+      margin-top: 10px;
+  
+      .dia {
+        width: 30px; /* Ajustar el tamaño de los días */
+        height: 30px; /* Ajustar el tamaño de los días */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 0.8rem; /* Ajustar el tamaño del texto */
+      }
+    }
+  }
+  

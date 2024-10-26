@@ -1,0 +1,57 @@
+.navbar {
+    position: sticky;
+    z-index: 1000;
+    top: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #f8f9fa;
+    padding: 7px;
+    justify-content: flex-end;
+  
+    .navbar-item {
+      position: relative; // Necesario para que el submenú se posicione correctamente
+      background-color: transparent;
+      color: #333;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #a21515; // Efecto hover
+        color: #f8f9fa;
+      }
+    }
+  
+    .submenu {
+      position: absolute; // Para que el submenú se posicione en relación al contenedor
+      top: calc(100% + 5px); // Aparece justo debajo del botón y un poco más abajo
+      left: 50%; // Centramos horizontalmente respecto al contenedor
+      transform: translateX(-50%); // Ajustamos para que esté alineado
+      list-style: none;
+      padding: 0;
+      margin: 3% 0;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: block;
+  
+      li {
+        padding: 10px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #e3e3e3; // Efecto hover
+        }
+      }
+    }
+  }
+.navbar-item ul {
+    width: 100%;
+}
+.navbar-item ul li{
+    color: black;
+}

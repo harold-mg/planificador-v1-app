@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MunicipioService } from 'src/app/services/municipio.service';
+import { CoordinacionService } from '../../services/coordinacion.service';
 
 @Component({
   selector: 'app-municipio-form',
@@ -16,7 +18,9 @@ export class MunicipioFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private municipioService: MunicipioService,
+    private coordinacionService: CoordinacionService,
   ) {
     this.municipioForm = this.fb.group({
       nombre: ['', Validators.required], // Campo de nombre del municipio
@@ -29,11 +33,10 @@ export class MunicipioFormComponent implements OnInit {
   }
 
   // Cargar coordinaciones desde el backend
-  loadCoordinaciones() {
-    this.http.get('http://localhost:8000/api/coordinaciones').subscribe(
-      (data: any) => this.coordinaciones = data,
-      (error) => this.handleError(error, 'Error al cargar las coordinaciones')
-    );
+  loadCoordinaciones(): void {
+    this.coordinacionService.getCoordinaciones().subscribe(data => {
+      this.coordinaciones = data;
+    });
   }
 
   onSubmit() {
@@ -43,7 +46,7 @@ export class MunicipioFormComponent implements OnInit {
       return;
     }
 
-    this.http.post('http://localhost:8000/api/municipios', this.municipioForm.value).subscribe(
+    this.municipioService.registerMunicipio(this.municipioForm.value).subscribe(
       response => {
         console.log('Municipio registrado exitosamente');
         this.router.navigate(['/registrar-municipio']); // Redirigir después del registro

@@ -41,7 +41,15 @@
     </button><br><br>
     <h2>ACTIVIDADES</h2>
     <br><a routerLink="/actividad-vehiculo">ACTIVIDAD VEHICULO</a>
-
+    
+    <!-- APROBACION DE ACTIVIDADES -->
+    <div *ngIf="esPlanificador">
+      <button class="btn btn-primary" (click)="irAprobarPlanificador()">Aprobar Actividades (Planificador)</button>
+    </div>    
+    <div *ngIf="esResponsableUnidad">
+      <!-- Botón solo visible para el responsable de unidad -->
+      <button (click)="irAAprobarActividadesUnidad()">Aprobar Actividades Unidad</button>
+    </div>
 
 </div>
   

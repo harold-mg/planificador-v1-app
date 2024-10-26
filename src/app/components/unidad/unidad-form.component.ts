@@ -23,6 +23,7 @@ export class UnidadFormComponent {
         next: (response) => {
           console.log('Unidad registrada correctamente', response);
           this.unidadForm.reset();
+          alert('Unidad registrada exitosamente');
         },
         error: (error) => {
           this.errorMessage = error.error.message || 'Error al registrar la unidad';

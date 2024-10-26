@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UnidadService } from 'src/app/services/unidad.service';
+import { AreaService } from 'src/app/services/area.service';
+import { PoaService } from 'src/app/services/poa.service';
 
 @Component({
   selector: 'app-poa-form',
@@ -17,7 +20,10 @@ export class PoaFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private unidadService: UnidadService,
+    private areaService: AreaService,
+    private poaService: PoaService
   ) {
     this.poaForm = this.fb.group({
       codigo_poa: ['', Validators.required], // Campo para código POA
@@ -33,50 +39,51 @@ export class PoaFormComponent implements OnInit {
       this.onUnidadChange(unidad_id);
     });
   }
-
   loadAreas() {
-    this.http.get('http://localhost:8000/api/areas').subscribe(
+    this.areaService.getAreas().subscribe(
       (data: any) => this.areas = data,
       (error) => this.handleError(error, 'Error al cargar las áreas')
     );
   }
 
-  loadUnidades() {
-    this.http.get('http://localhost:8000/api/unidades').subscribe(
-      (data: any) => this.unidades = data,
-      (error) => this.handleError(error, 'Error al cargar las unidades')
-    );
-  }
-
-  onSubmit() {
-    this.cleanErrors();
-    if (this.poaForm.invalid) {
-      return; // Si el formulario no es válido, no hacer el submit
-    }
-
-    this.http.post('http://localhost:8000/api/poas', this.poaForm.value).subscribe(
-      response => {
-        console.log('Registro de POA exitoso:', response); // Mensaje en consola
-        this.router.navigate(['/registrar-poa']); // Redirigir después de guardar
-      },
-      errors => this.handleErrors(errors)
-    );
-  }
-  onUnidadChange(unidad_id: number) {
-    if (unidad_id) {
-      this.http.get(`http://localhost:8000/api/unidades/${unidad_id}/areas`).subscribe(
-        (data: any) => {
-          this.areas = data;
-          this.areas.unshift({ id: null, nombre: 'Ninguna' }); // Añadir la opción 'Ninguna'
-          this.poaForm.patchValue({ area_id: null }); // Reiniciar el campo área
-        },
-        error => this.handleError(error, 'Error al cargar las áreas de la unidad')
+    loadUnidades() {
+      this.unidadService.getUnidades().subscribe(
+        (data: any) => this.unidades = data,
+        (error) => this.handleError(error, 'Error al cargar las unidades')
       );
-    } else {
-      this.areas = [{ id: null, nombre: 'Ninguna' }]; // Si no hay unidad seleccionada
-      this.poaForm.patchValue({ area_id: null });
     }
-  }
+
+    onSubmit() {
+      this.cleanErrors();
+      if (this.poaForm.invalid) {
+        return; // Si el formulario no es válido, no hacer el submit
+      }
+  
+      this.poaService.createPoa(this.poaForm.value).subscribe(
+        response => {
+          console.log('Registro de POA exitoso:', response); // Mensaje en consola
+          this.poaForm.reset();
+          alert('POA registrado exitosamente');
+          //this.router.navigate(['/registrar-poa']); // Redirigir después de guardar
+        },
+        errors => this.handleErrors(errors)
+      );
+    }
+    onUnidadChange(unidad_id: number) {
+      if (unidad_id) {
+        this.unidadService.getAreasByUnidadId(unidad_id).subscribe(
+          (data: any) => {
+            this.areas = data;
+            this.areas.unshift({ id: null, nombre: 'Ninguna' }); // Añadir la opción 'Ninguna'
+            this.poaForm.patchValue({ area_id: null }); // Reiniciar el campo área
+          },
+          error => this.handleError(error, 'Error al cargar las áreas de la unidad')
+        );
+      } else {
+        this.areas = [{ id: null, nombre: 'Ninguna' }]; // Si no hay unidad seleccionada
+        this.poaForm.patchValue({ area_id: null });
+      }
+    }
   
   handleError(error: any, message: string) {
     console.error(message, error);

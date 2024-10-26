@@ -7,7 +7,7 @@ import { environment } from 'src/environments/enviroment';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.apiUrl; // Asegúrate de configurar esta URL en tu archivo de entorno
+  private apiUrl = `${environment.apiUrl}/api`;; // Asegúrate de configurar esta URL en tu archivo de entorno
 
   constructor(private http: HttpClient) {}
 
@@ -18,8 +18,15 @@ export class AuthService {
 
   // Método para cerrar sesión
   logout(): Observable<any> {
+    // Llama al backend para cerrar la sesión
     return this.http.post(`${this.apiUrl}/logout`, {});
   }
+  
+  removeToken() {
+    // Elimina el token almacenado localmente
+    localStorage.removeItem('token'); // O la clave que estés utilizando
+  }
+  
 
   // Guardar token en localStorage
   setToken(token: string): void {
@@ -53,5 +60,9 @@ export class AuthService {
   // Método para obtener el rol del usuario actual
   getUserRole(): Observable<string> {
     return this.http.get<string>(`${this.apiUrl}/user-role`);
+  }
+    // Método para obtener los datos completos del usuario autenticado
+  obtenerUsuarioActual(): Observable<any> {
+    return this.getUser();
   }
 }

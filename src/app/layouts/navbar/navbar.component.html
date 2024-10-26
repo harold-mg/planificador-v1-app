@@ -1,0 +1,41 @@
+<div class="navbar">
+    <div class="navbar-item" (click)="toggleActividadesMenu()">
+      VER MIS ACTIVIDADES
+      <ul *ngIf="actividadesMenuVisible" class="submenu">
+        <li (click)="verActividadesConVehiculo()">Actividades con Vehículo</li>
+        <li (click)="verActividadesSinVehiculo()">Actividades Sin Vehículo</li>
+        <li (click)="verActividadesEnAuditorio()">Actividades en Auditorio</li>
+        <li (click)="verActividadesVirtuales()">Actividades Virtuales</li>
+        <li (click)="verActividadesExternas()">Actividades Externas</li>
+      </ul>
+    </div>
+  
+    <div class="navbar-item" (click)="toggleAprobarMenu()">
+      APROBAR ACTIVIDADES
+      <ul *ngIf="aprobarMenuVisible" class="submenu">
+        <li *ngIf="esPlanificador" (click)="aprobarPlanificadorConV()">Actividades con Vehículo (Planificador)</li>
+        <li *ngIf="esPlanificador" (click)="aprobarPlanificadorSinV()">Actividades Sin Vehículo (Planificador)</li>
+        <li *ngIf="esPlanificador" (click)="aprobarPlanificadorAudi()">Actividades en Auditorio (Planificador)</li>
+        <li *ngIf="esPlanificador" (click)="aprobarPlanificadorVirt()">Actividades Virtuales (Planificador)</li>
+        <li *ngIf="esPlanificador" (click)="aprobarPlanificadorExte()">Actividades Externas (Planificador)</li>
+    
+        <li *ngIf="esResponsableUnidad" (click)="aprobarUnidadConV()">Actividades con Vehículo (Unidad)</li>
+        <li *ngIf="esResponsableUnidad" (click)="aprobarUnidadSinV()">Actividades Sin Vehículo (Unidad)</li>
+        <li *ngIf="esResponsableUnidad" (click)="aprobarUnidadAudi()">Actividades en Auditorio (Unidad)</li>
+        <li *ngIf="esResponsableUnidad" (click)="aprobarUnidadVirt()">Actividades Virtuales (Unidad)</li>
+        <li *ngIf="esResponsableUnidad" (click)="aprobarUnidadExte()">Actividades Externas (Unidad)</li>
+      </ul>
+    </div>
+  
+    <div class="navbar-item" (click)="toggleInformeMenu()">
+      OBTENER INFORME
+      <ul *ngIf="informeMenuVisible" class="submenu">
+        <li (click)="obtenerInformeConVehiculo()">Actividades con Vehículo</li>
+        <li (click)="obtenerInformeSinVehiculo()">Actividades Sin Vehículo</li>
+        <li (click)="obtenerInformeEnAuditorio()">Actividades en Auditorio</li>
+        <li (click)="obtenerInformeVirtuales()">Actividades Virtuales</li>
+        <li (click)="obtenerInformeExternas()">Actividades Externas</li>
+      </ul>
+    </div>
+  </div>
+  

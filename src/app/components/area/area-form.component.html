@@ -1,13 +1,17 @@
-<form (ngSubmit)="registrarArea()">
+<app-cabecera></app-cabecera>
+<div class="container">
+  <h2>Registrar Área</h2>
+  <form [formGroup]="areaForm" (ngSubmit)="registrarArea()">
     <label for="nombre">Nombre del área</label>
-    <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" required>
-  
+    <input type="text" id="nombre" formControlName="nombre" required>
+    
     <label for="unidad">Unidad</label>
-    <select id="unidad" [(ngModel)]="unidad_id" name="unidad_id" required>
+    <select id="unidad" formControlName="unidad_id" required>
       <option *ngFor="let unidad of unidades" [value]="unidad.id">{{ unidad.nombre }}</option>
     </select>
-  
-    <button type="submit">Registrar Área</button>
+    
+    <button type="submit" class="btn" [disabled]="areaForm.invalid">Registrar Área</button>
     <br><a routerLink="/dashboard">principal</a>
   </form>
-  
+    
+</div>

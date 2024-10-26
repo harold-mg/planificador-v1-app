@@ -1,0 +1,81 @@
+<app-cabecera></app-cabecera>
+<div class="container">
+  <h2>Modificar Actividad de Vehículo</h2>
+  <form [formGroup]="actividadForm" (ngSubmit)="onSubmit()">
+
+    <!-- Selección de POA -->
+    <div>
+      <label for="poa_id">Código POA:</label>
+      <select id="poa_id" formControlName="poa_id" (change)="onPoaSelected($event)">
+        <option value="">Seleccione un POA</option>
+        <option *ngFor="let poa of poas" [value]="poa.id" [selected]="poa.id === actividadForm.get('poa_id')?.value">{{ poa.codigo_poa }}</option>
+      </select>
+    </div>
+
+    <div *ngIf="operaciones.length > 0">
+      <label for="detalle_operacion">Nombre de actividad según POA:</label>
+      <select id="detalle_operacion" formControlName="detalle_operacion">
+        <option value="">Seleccione una operación</option>
+        <option *ngFor="let operacion of operaciones" [value]="operacion.id" [selected]="operacion.id === actividadForm.get('detalle_operacion')?.value">{{ operacion.descripcion }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="resultados_esperados">Resultado Esperado:</label>
+      <textarea id="resultados_esperados" formControlName="resultados_esperados" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="fecha_inicio">Fecha de Inicio:</label>
+      <input type="date" id="fecha_inicio" formControlName="fecha_inicio" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="fecha_fin">Fecha de Fin:</label>
+      <input type="date" id="fecha_fin" formControlName="fecha_fin" class="form-control">
+    </div>
+
+    <div>
+      <label for="coordinacion">Coordinación:</label>
+      <select id="coordinacion" (change)="onCoordinacionSelected($event)">
+        <option value="">Seleccione Coordinación</option>
+        <option *ngFor="let coordinacion of coordinaciones" [value]="coordinacion.id" [selected]="coordinacion.id === actividadForm.get('coordinacion')?.value">{{ coordinacion.nombre }}</option>
+      </select>
+    </div>
+
+    <div *ngIf="municipios.length > 0">
+      <label for="municipio">Municipio:</label>
+      <select id="municipio" formControlName="municipio" (change)="onMunicipioSelected($event)">
+        <option value="">Seleccione Municipio</option>
+        <option *ngFor="let municipio of municipios" [value]="municipio.id" [selected]="municipio.id === actividadForm.get('municipio')?.value">{{ municipio.nombre }}</option>
+      </select>
+    </div>
+
+    <div *ngIf="centrosSalud.length > 0">
+      <label for="centro_salud_id">Centro de Salud:</label>
+      <select id="centro_salud_id" formControlName="centro_salud_id" required>
+        <option value="">Seleccione Centro de Salud</option>
+        <option *ngFor="let centro of centrosSalud" [value]="centro.id" [selected]="centro.id === actividadForm.get('centro_salud_id')?.value">{{ centro.nombre }}</option>
+      </select>
+      <div *ngIf="actividadForm.get('centro_salud_id')?.invalid && (actividadForm.get('centro_salud_id')?.touched || actividadForm.get('centro_salud_id')?.dirty)">
+        <small class="text-danger">Debes seleccionar un centro de salud.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tecnico_a_cargo">Técnico a Cargo:</label>
+      <textarea id="tecnico_a_cargo" formControlName="tecnico_a_cargo" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="detalles_adicionales">Detalles Adicionales:</label>
+      <textarea id="detalles_adicionales" formControlName="detalles_adicionales" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="loading">Guardar Cambios</button>
+  </form>
+</div>
+<a routerLink="/dashboard">principal</a>
+
+
+  

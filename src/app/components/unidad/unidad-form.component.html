@@ -1,16 +1,18 @@
-<h2>Registrar Unidad</h2>
-
-<form (ngSubmit)="onSubmit()" [formGroup]="unidadForm">
-  <div class="form-group">
-    <label for="nombre">Nombre de la Unidad:</label>
-    <input type="text" class="form-control" formControlName="nombre" id="nombre" />
-    <div *ngIf="unidadForm.get('nombre')?.invalid && unidadForm.get('nombre')?.touched" class="alert alert-danger">
-      El nombre de la unidad es obligatorio y debe ser único.
+<app-cabecera></app-cabecera>
+<div class="container">
+  <h2>Registrar Unidad</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="unidadForm">
+    <div class="form-group">
+      <label for="nombre">Nombre de la Unidad:</label>
+      <input type="text" class="form-control" formControlName="nombre" id="nombre" />
+      <div *ngIf="unidadForm.get('nombre')?.invalid && unidadForm.get('nombre')?.touched" class="alert">
+        El nombre de la unidad es obligatorio y debe ser único.
+      </div>
     </div>
-  </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="unidadForm.invalid">Registrar Unidad</button>
-  <br><a routerLink="/dashboard">principal</a>
+    <button type="submit" class="btn" [disabled]="unidadForm.invalid">Registrar Unidad</button>
+    <br><a routerLink="/dashboard">Principal</a>
 
-  <div *ngIf="errorMessage" class="alert alert-danger mt-2">{{ errorMessage }}</div>
-</form>
+    <div *ngIf="errorMessage" class="alert">{{ errorMessage }}</div>
+  </form>
+</div>

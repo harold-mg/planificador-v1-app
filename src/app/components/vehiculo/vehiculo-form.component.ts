@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { VehiculoService } from '../../services/vehiculo.service';
 
 @Component({
   selector: 'app-vehiculo-form',
@@ -12,7 +13,8 @@ export class VehiculoFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private vehiculoService: VehiculoService
   ) {
     this.vehiculoForm = this.fb.group({
       placa: ['', Validators.required],
@@ -23,12 +25,26 @@ export class VehiculoFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  registerVehiculo() {
+/*   registerVehiculo() {
     if (this.vehiculoForm.valid) {
       this.http.post('http://localhost:8000/api/vehiculos', this.vehiculoForm.value).subscribe(
         response => {
           console.log('Vehículo registrado:', response);
 
+        },
+        error => {
+          console.error('Error al registrar el vehículo:', error);
+        }
+      );
+    }
+  } */
+  registerVehiculo() {
+    if (this.vehiculoForm.valid) {
+      this.vehiculoService.createVehiculo(this.vehiculoForm.value).subscribe(
+        response => {
+          console.log('Vehículo registrado:', response);
+          // Puedes resetear el formulario o hacer otras acciones aquí
+          this.vehiculoForm.reset();
         },
         error => {
           console.error('Error al registrar el vehículo:', error);

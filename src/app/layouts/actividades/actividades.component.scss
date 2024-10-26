@@ -1,0 +1,38 @@
+.actividades-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    //background-color: #EEF5FF; // Fondo de la sección
+  }
+  .actividades-row {
+    display: flex;
+    justify-content: center; // Centra los botones en la fila
+    margin: 15px 0; // Espacio entre filas
+  }
+  .actividad-button {
+    background-color: #a21515;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 0 15px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    min-height: 80px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+  
+    &:hover {
+      background-color: #6439FF;
+      transform: scale(1.05);
+    }
+  
+    &:active {
+      background-color: #00CCDD;
+      transform: scale(1);
+    }
+  }
+  

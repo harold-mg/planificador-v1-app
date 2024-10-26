@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AreaService {
-  private apiUrl = 'http://localhost:8000/api/areas';  // URL de la API
-
+  //private apiUrl = 'http://localhost:8000/api/areas';  // URL de la API
+  private apiUrl = `${environment.apiUrl}/api/areas`;
   constructor(private http: HttpClient) {}
 
   // Método para obtener todas las áreas

@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { AreaService } from '../../services/area.service';
+import { UnidadService } from '../../services/unidad.service';
 import { Router } from '@angular/router';
 
 
@@ -21,6 +23,8 @@ export class UsuarioFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private areaService: AreaService,
+    private unidadService: UnidadService,
     private http: HttpClient, // Para hacer solicitudes HTTP
     private router: Router,
     private cdr: ChangeDetectorRef
@@ -65,8 +69,19 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   // Cargar las áreas desde el backend
-  loadAreas() {
+/*   loadAreas() {
     this.http.get('http://localhost:8000/api/areas').subscribe(
+      (data: any) => {
+        this.areas = data;
+      },
+      (error) => {
+        console.error('Error al cargar las áreas', error);
+        this.errors.general = 'Error al cargar las áreas';
+      }
+    );
+  } */
+  loadAreas() {
+    this.areaService.getAreas().subscribe(
       (data: any) => {
         this.areas = data;
       },
@@ -77,7 +92,7 @@ export class UsuarioFormComponent implements OnInit {
     );
   }
 
-  loadUnidades() {
+/*   loadUnidades() {
     this.http.get('http://localhost:8000/api/unidades').subscribe(
       (data: any) => {
         this.unidades = data;
@@ -88,7 +103,18 @@ export class UsuarioFormComponent implements OnInit {
       }
     );
   }
-
+ */
+  loadUnidades() {
+    this.unidadService.getUnidades().subscribe(
+      (data: any) => {
+        this.unidades = data;
+      },
+      (error) => {
+        console.error('Error al cargar las unidades', error);
+        this.errors.general = 'Error al cargar las unidades';
+      }
+    );
+  }
   onRoleChange(event: Event) {
     const selectedRole = (event.target as HTMLSelectElement).value;
   
@@ -119,7 +145,7 @@ export class UsuarioFormComponent implements OnInit {
     }
     
     // Método para cargar áreas según una unidad seleccionada desde el backend
-    loadAreasByUnidad(unidadId: string) {
+/*     loadAreasByUnidad(unidadId: string) {
       this.http.get(`http://localhost:8000/api/unidades/${unidadId}/areas`).subscribe(
         (data: any) => {
           this.areas = data; // Actualizar las áreas con las áreas de la unidad seleccionada
@@ -129,8 +155,19 @@ export class UsuarioFormComponent implements OnInit {
           this.errors.general = 'Error al cargar las áreas para la unidad seleccionada';
         }
       );
-    }
-    
+    } */
+      loadAreasByUnidad(unidadId: string) {
+        const id = Number(unidadId);
+        this.unidadService.getAreasByUnidadId(id).subscribe(
+          (data: any) => {
+            this.areas = data; // Actualizar las áreas con las áreas de la unidad seleccionada
+          },
+          (error) => {
+            console.error('Error al cargar las áreas para la unidad seleccionada', error);
+            this.errors.general = 'Error al cargar las áreas para la unidad seleccionada';
+          }
+        );
+      }
 
   // Limpiar errores anteriores
   private cleanErrors(): void {
@@ -140,7 +177,9 @@ export class UsuarioFormComponent implements OnInit {
   // Manejar respuesta exitosa
   private handleResponse(response: any): void {
     console.log(response.message);
-    this.router.navigateByUrl('/dashboard'); // Redirigir al dashboard o donde prefieras
+    this.registerForm.reset();
+    alert('Usuario registrado exitosamente');
+    this.router.navigateByUrl('/registrar-usuario'); // Redirigir al dashboard o donde prefieras
   }
 
   // Manejar errores del servidor

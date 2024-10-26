@@ -1,15 +1,18 @@
-<form [formGroup]="operacionesForm" (ngSubmit)="onSubmit()">
-    <div>
+<app-cabecera></app-cabecera>
+<div class="container">
+  <h2>Registrar Operación</h2>
+  <form [formGroup]="operacionesForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
       <label for="poa_id">Código POA:</label>
       <select id="poa_id" formControlName="poa_id">
-        <option *ngFor="let poa of poas" [value]="poa.id">{{ poa.codigo_poa }}</option> <!-- Usa poa.id en value -->
+        <option *ngFor="let poa of poas" [value]="poa.id">{{ poa.codigo_poa }}</option>
       </select>
       <div *ngIf="operacionesForm.get('poa_id')?.invalid && (operacionesForm.get('poa_id')?.touched || operacionesForm.get('poa_id')?.dirty)">
         {{ getErrorMessage('poa_id') }}
       </div>
     </div>
     
-    <div>
+    <div class="form-group">
       <label for="descripcion">Descripción:</label>
       <textarea id="descripcion" formControlName="descripcion" rows="4" cols="50"></textarea>
       <div *ngIf="operacionesForm.get('descripcion')?.invalid && (operacionesForm.get('descripcion')?.touched || operacionesForm.get('descripcion')?.dirty)">
@@ -17,10 +20,11 @@
       </div>
     </div>
   
-    <br>
-    <button type="submit">Registrar Operación</button>
-    <br><a routerLink="/dashboard">principal</a>
+    <button type="submit" class="btn">Registrar Operación</button>
+    <br><a routerLink="/dashboard">Principal</a>
   
-    <div *ngIf="errors.general">{{ errors.general }}</div>
+    <div *ngIf="errors.general" class="alert">{{ errors.general }}</div>
   </form>
+</div>
+
   

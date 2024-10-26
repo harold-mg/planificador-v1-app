@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { AreaService } from 'src/app/services/area.service';
+import { UnidadService } from 'src/app/services/unidad.service';
 
 @Component({
   selector: 'app-area-form',
@@ -8,18 +11,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./area-form.component.scss']
 })
 export class AreaFormComponent implements OnInit {
-  nombre: string = '';
-  unidad_id: number | null = null;
+  areaForm: FormGroup;
+/*   nombre: string = '';
+  unidad_id: number | null = null; */
   unidades: any[] = []; // Cambia el tipo según tu modelo
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private areaService: AreaService, // Inyecta el servicio de áreas
+    private unidadService: UnidadService, // Inyecta el servicio de unidades 
+    private fb: FormBuilder) {
+      this.areaForm = this.fb.group({
+        nombre: ['', Validators.required],
+        unidad_id: [null, Validators.required]
+      });
+    }
 
   ngOnInit(): void {
     this.obtenerUnidades(); // Carga las unidades al iniciar el componente
   }
 
   obtenerUnidades(): void {
-    this.http.get('http://localhost:8000/api/unidades').subscribe(
+    this.unidadService.getUnidades().subscribe(
       (response: any) => {
         this.unidades = response; // Asigna la respuesta a unidades
       },
@@ -28,17 +42,16 @@ export class AreaFormComponent implements OnInit {
       }
     );
   }
-
   registrarArea(): void {
-    const nuevaArea = {
-      nombre: this.nombre,
-      unidad_id: this.unidad_id
-    };
+    const nuevaArea = this.areaForm.value; // Obtén los valores del formulario
 
-    this.http.post('http://localhost:8000/api/areas', nuevaArea).subscribe(
+    this.areaService.createArea(nuevaArea).subscribe(
       (response) => {
         console.log('Área registrada con éxito', response);
-        this.router.navigate(['/dashboard']); // Redirige a la lista de áreas o donde desees
+        alert('Área registrada exitosamente');
+
+        // Limpiar el formulario
+        this.areaForm.reset(); // Limpiar el formulario
       },
       (error) => {
         console.error('Error al registrar el área', error);

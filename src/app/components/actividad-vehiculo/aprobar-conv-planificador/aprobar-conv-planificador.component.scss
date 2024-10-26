@@ -1,0 +1,74 @@
+.actividad-list {
+    max-width: 1000px; // Ancho máximo de la tabla
+    margin: 20px auto; // Centrar la tabla
+    background-color: #f9f9f9; // Color de fondo de la lista
+    border-radius: 10px; // Bordes redondeados
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // Sombra suave
+  
+    h2 {
+      text-align: center;
+      color: #6439FF; // Color del título
+      margin: 20px 0;
+      font-size: 24px; // Tamaño del texto
+    }
+  
+    .table {
+      width: 100%; // Ancho completo
+      border-collapse: collapse; // Colapsar bordes
+  
+      thead {
+        background-color: #6439FF; // Color de fondo del encabezado
+        color: white; // Color del texto del encabezado;
+  
+        th {
+          padding: 12px; // Espaciado interno
+          text-align: left; // Alinear a la izquierda
+          font-weight: bold; // Texto en negrita
+        }
+      }
+  
+      tbody {
+        tr {
+          &:nth-child(even) {
+            background-color: #f2f2f2; // Color de fondo para filas pares
+          }
+  
+          &:hover {
+            background-color: #e0e0e0; // Color de fondo al pasar el mouse
+          }
+  
+          td {
+            padding: 12px; // Espaciado interno
+            border: 1px solid #ddd; // Borde suave
+          }
+        }
+      }
+    }
+  
+    .btn {
+      margin: 5px; // Margen entre botones
+      padding: 10px 15px; // Espaciado interno de los botones
+      border-radius: 5px; // Bordes redondeados
+      font-size: 14px; // Tamaño de texto
+      transition: background-color 0.3s; // Transición suave para hover
+  
+      &.btn-success {
+        background-color: #28a745; // Color verde
+        color: white;
+  
+        &:hover {
+          background-color: #218838; // Color verde oscuro al pasar el mouse
+        }
+      }
+  
+      &.btn-danger {
+        background-color: #dc3545; // Color rojo
+        color: white;
+  
+        &:hover {
+          background-color: #c82333; // Color rojo oscuro al pasar el mouse
+        }
+      }
+    }
+  }
+  

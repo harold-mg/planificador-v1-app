@@ -35,7 +35,7 @@ export class LoginComponent {
         (response) => {
           console.log('Inicio de sesión exitoso:', response);
           this.authService.setToken(response.access_token);
-          this.router.navigate(['/dashboard']); // Redirigir después de un login exitoso
+          this.router.navigate(['/inicio']); // Redirigir después de un login exitoso
         },
         (error) => {
           console.error('Error en el inicio de sesión:', error);

@@ -1,0 +1,51 @@
+h2{
+    color: #4F75FF;
+}
+.sidebar {
+    width: 220px;
+    background-color: #a21515;
+    padding: 20px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin: 15px 0;
+  }
+  
+  .sidebar ul li button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .sidebar ul li button:hover {
+    color: #00CCDD;
+  }
+  
+  .submenu {
+    margin-left: 20px;
+    list-style-type: none;
+  }
+  
+  .submenu li {
+    margin: 10px 0;
+  }
+  
+  .submenu li a {
+    color: #B4D4FF;
+    text-decoration: none;
+  }
+  
+  .submenu li a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+  

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { OperacionService } from 'src/app/services/operacion.service';
 
 @Component({
   selector: 'app-operaciones-form',
@@ -16,7 +17,8 @@ export class OperacionesFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private operacionService: OperacionService
   ) {
     this.operacionesForm = this.fb.group({
       poa_id: [null, Validators.required], // Seleccionar POA_ID
@@ -30,7 +32,7 @@ export class OperacionesFormComponent implements OnInit {
   }
 
   loadPoas() {
-    this.http.get('http://localhost:8000/api/poas').subscribe(
+    this.operacionService.loadPoas().subscribe(
       (data: any) => this.poas = data,
       (error) => this.handleError(error, 'Error al cargar los POAs')
     );
@@ -42,10 +44,12 @@ export class OperacionesFormComponent implements OnInit {
       return; // Si el formulario no es válido, no hacer el submit
     }
 
-    this.http.post('http://localhost:8000/api/operaciones', this.operacionesForm.value).subscribe(
+    this.operacionService.registerOperacion(this.operacionesForm.value).subscribe(
       response => {
         console.log('Operación registrada exitosamente:', response);
-        this.router.navigate(['/registrar-operaciones']); // Redirigir después de guardar
+        this.operacionesForm.reset();
+        alert('Operación registrada exitosamente');
+        // this.router.navigate(['/registrar-operaciones']); // Redirigir después de guardar
       },
       errors => this.handleErrors(errors)
     );

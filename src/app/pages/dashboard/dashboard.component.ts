@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   usuario: any = null;  // Aquí guardaremos los datos del usuario
   esPlanificador: boolean = false;
+  esResponsableUnidad: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -21,6 +22,8 @@ export class DashboardComponent implements OnInit {
 
         // Verificar si el rol del usuario es 'planificador'
         this.esPlanificador = this.usuario.rol === 'planificador';
+        // Verificar si el rol del usuario es 'responsable_unidad'
+        this.esResponsableUnidad = this.usuario.rol === 'responsable_unidad';
       },
       (error) => {
         console.error('Error obteniendo los datos del usuario:', error);
@@ -75,7 +78,14 @@ export class DashboardComponent implements OnInit {
     // Redirigir a la página de actividad-vehiculo
     this.router.navigate(['/actividad-vehiculo']);
   }
+  // Redirigir a la pagina de aprobacion de actividades
+  irAprobarPlanificador() {
+    this.router.navigate(['/aprobar-convehi-planificador']);
+  }
   
-
+  // Redirigir a la página de aprobación de actividades para responsable de unidad
+  irAAprobarActividadesUnidad() {
+    this.router.navigate(['/aprobar-convehi-unidad']);
+  }
 }
 

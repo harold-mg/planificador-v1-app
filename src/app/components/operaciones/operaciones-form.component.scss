@@ -1,0 +1,68 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 1%;
+    background-color: #86B6F6; // Fondo del formulario
+    padding: 1% 5% 1% 2%;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #6439FF; // Color del título
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333; // Color del texto
+  }
+  
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  
+    &:focus {
+      border-color: #6439FF; // Color en foco
+      outline: none;
+    }
+  }
+  
+  .btn {
+    background-color: #6439FF; // Color del botón
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: #3eed7b; // Color en hover
+    }
+  
+    &:disabled {
+      background-color: #ccc; // Color para botón deshabilitado
+      cursor: not-allowed;
+    }
+  }
+  
+  .alert {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  

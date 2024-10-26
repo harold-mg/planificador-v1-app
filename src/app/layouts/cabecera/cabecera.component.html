@@ -1,0 +1,20 @@
+<header class="cabecera">
+  <div class="icono-izquierda">
+    <img src="assets/images/cerro_Sedes.svg" alt="Icono" class="icono">
+  </div>
+  <nav class="menu">
+    <button class="menu-item" (click)="goToInicio()">INICIO</button>
+    <button class="menu-item" (click)="scrollToActividades()">ACTIVIDADES</button>
+    <button class="menu-item">CALENDARIO</button>
+    <button class="menu-item">MAPA</button>
+    <div class="usuario-menu">
+      <button class="menu-item usuario-boton" (click)="toggleMenu()">USUARIO</button>
+      <ul class="submenu" [class.visible]="menuVisible">
+        <li (click)="cerrarSesion()">CERRAR SESIÓN</li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+  
+  

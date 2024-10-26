@@ -1,0 +1,19 @@
+<h2>SIDEBAR</h2>
+<div class="sidebar">
+  <ul>
+    <li *ngFor="let menu of getFilteredMenus()">
+      <button (click)="toggleMenu(menu)">{{ menu.name }}</button>
+      <ul *ngIf="menu.isOpen" class="submenu">
+        <li *ngIf="menu.routes.view">
+          <a [routerLink]="menu.routes.view">Ver</a>
+        </li>
+        <li>
+          <a [routerLink]="menu.routes.create">Crear</a>
+        </li>
+        <li *ngIf="menu.routes.edit">
+          <a [routerLink]="menu.routes.edit">Editar/Eliminar</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

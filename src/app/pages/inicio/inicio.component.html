@@ -1,0 +1,27 @@
+<img id="portada_inicio" src="assets/images/portada_plani_1.png" alt="">
+<app-cabecera></app-cabecera>
+<app-navbar></app-navbar>
+<p>inicio works!</p>
+<!-- APROBACION DE ACTIVIDADES -->
+<div *ngIf="esPlanificador">
+    <button class="btn btn-primary" (click)="irAprobarPlanificadorConV()">Aprobar Actividades (Planificador)</button>
+    </div>    
+    <div *ngIf="esResponsableUnidad">
+    <!-- Botón solo visible para el responsable de unidad -->
+    <button (click)="irAprobarUnidadConV()">Aprobar Actividades Unidad</button>
+</div>
+<main>
+    <div class="menu-lateral">
+        <app-sidebar></app-sidebar>
+        <app-mini-calendario></app-mini-calendario>
+    </div>
+    <div class="inicio-principales">
+        <img id="potosi-mapa" src="assets/images/potosi-mapa-blanco1.svg" alt="">
+        <app-actividades></app-actividades>
+    </div>
+</main>
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ -->
