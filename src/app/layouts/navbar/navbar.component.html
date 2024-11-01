@@ -28,14 +28,15 @@
     </div>
   
     <div class="navbar-item" (click)="toggleInformeMenu()">
-      OBTENER INFORME
-      <ul *ngIf="informeMenuVisible" class="submenu">
+        <li (click)="obtenerInformes()">OBTENER INFORME</li>
+        
+      <!-- <ul *ngIf="informeMenuVisible" class="submenu">
         <li (click)="obtenerInformeConVehiculo()">Actividades con Vehículo</li>
         <li (click)="obtenerInformeSinVehiculo()">Actividades Sin Vehículo</li>
         <li (click)="obtenerInformeEnAuditorio()">Actividades en Auditorio</li>
         <li (click)="obtenerInformeVirtuales()">Actividades Virtuales</li>
         <li (click)="obtenerInformeExternas()">Actividades Externas</li>
-      </ul>
+      </ul> -->
     </div>
   </div>
   

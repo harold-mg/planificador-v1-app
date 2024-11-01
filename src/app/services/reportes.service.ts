@@ -9,8 +9,13 @@ import { environment } from 'src/environments/enviroment';
 export class ReportesService {
   private apiUrl = `${environment.apiUrl}`; 
   constructor(private http: HttpClient) { }
-  getReporteMensualConVehiculo(mes: number): Observable<Blob> {
+/*   getReporteMensualConVehiculo(mes: number): Observable<Blob> {
     const headers = { Authorization: `Bearer ${localStorage.getItem('access_token')}` };
     return this.http.get(`${this.apiUrl}/reporte-mensual-con-vehiculo/${mes}`, { headers, responseType: 'blob' });
-  }
+  } */
+  getReporteMensualConVehiculo(mes: number, year: number): Observable<Blob> {
+    const headers = { Authorization: `Bearer ${localStorage.getItem('access_token')}` };
+    return this.http.get(`${this.apiUrl}/reporte-mensual-con-vehiculo/${mes}/${year}`, { headers, responseType: 'blob' });
+}
+
 }

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { OperacionService } from 'src/app/services/operacion.service';
+import { PoaService } from 'src/app/services/poa.service';
+
 
 @Component({
   selector: 'app-operaciones-form',
@@ -18,7 +20,8 @@ export class OperacionesFormComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private operacionService: OperacionService
+    private operacionService: OperacionService,
+    private poasService: PoaService
   ) {
     this.operacionesForm = this.fb.group({
       poa_id: [null, Validators.required], // Seleccionar POA_ID
@@ -32,7 +35,7 @@ export class OperacionesFormComponent implements OnInit {
   }
 
   loadPoas() {
-    this.operacionService.loadPoas().subscribe(
+    this.poasService.getPoas().subscribe(
       (data: any) => this.poas = data,
       (error) => this.handleError(error, 'Error al cargar los POAs')
     );

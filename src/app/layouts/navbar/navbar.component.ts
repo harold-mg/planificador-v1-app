@@ -114,24 +114,8 @@ export class NavbarComponent implements OnInit {
   aprobarUnidadExte(){
 
   }
-
-  obtenerInformeConVehiculo() {
-    // Lógica para obtener informe de actividades con vehículo
+  obtenerInformes(){
+    this.router.navigate(['/reportes']);
   }
-
-  obtenerInformeSinVehiculo() {
-    // Lógica para obtener informe de actividades sin vehículo
-  }
-
-  obtenerInformeEnAuditorio() {
-    // Lógica para obtener informe de actividades en auditorio
-  }
-
-  obtenerInformeVirtuales() {
-    // Lógica para obtener informe de actividades virtuales
-  }
-
-  obtenerInformeExternas() {
-    // Lógica para obtener informe de actividades externas
-  }
+ 
 }

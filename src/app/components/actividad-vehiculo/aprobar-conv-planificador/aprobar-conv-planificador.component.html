@@ -40,14 +40,7 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="reporte-mensual">
-    <h3>Generar Reporte Mensual</h3>
-    <label for="mes">Selecciona el mes:</label>
-    <select id="mes" [(ngModel)]="mesSeleccionado">
-      <option *ngFor="let mes of meses" [value]="mes.value">{{ mes.label }}</option>
-    </select>
-    <button (click)="generarReporteMensual()">Generar Reporte</button>
+    <app-reporte-con-vehiculo></app-reporte-con-vehiculo>
   </div>
   
   

@@ -22,6 +22,7 @@ import { AprobarConvUnidadComponent } from './components/actividad-vehiculo/apro
 import { AprobarConvPlanificadorComponent } from './components/actividad-vehiculo/aprobar-conv-planificador/aprobar-conv-planificador.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ActividadConvEditComponent } from './components/actividad-vehiculo/actividad-conv-edit/actividad-conv-edit.component';
+import { ReportesComponent } from './pages/reportes/reportes.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'inicio', component: InicioComponent},
   {path: 'dashboard', component: DashboardComponent},
+  {path: 'reportes', component: ReportesComponent},
   //DIRECCIONES DONDE SE REGISTRAN NUEVOS DATOS
   {path: 'registrar-usuario', component: UsuarioFormComponent},
   {path: 'registrar-unidad', component: UnidadFormComponent},

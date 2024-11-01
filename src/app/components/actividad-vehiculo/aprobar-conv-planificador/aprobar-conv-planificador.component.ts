@@ -12,22 +12,6 @@ import { Router } from '@angular/router';
 export class AprobarConvPlanificadorComponent implements OnInit {
   actividades: any[] = [];
   todasActividades: any[] = [];
-  meses = [
-    { label: 'Enero', value: 1 },
-    { label: 'Febrero', value: 2 },
-    { label: 'Marzo', value: 3 },
-    { label: 'Abril', value: 4 },
-    { label: 'Mayo', value: 5 },
-    { label: 'Junio', value: 6 },
-    { label: 'Julio', value: 7 },
-    { label: 'Agosto', value: 8 },
-    { label: 'Septiembre', value: 9 },
-    { label: 'Octubre', value: 10 },
-    { label: 'Noviembre', value: 11 },
-    { label: 'Diciembre', value: 12 },
-  ];
-  mesSeleccionado: number = new Date().getMonth() + 1; // Inicializar con el mes actual
-  
   constructor(
     private actividadVehiculoService: ActividadVehiculoService, // Usa el servicio correcto
     private authService: AuthService,
@@ -119,23 +103,6 @@ export class AprobarConvPlanificadorComponent implements OnInit {
     } */
     modificarActividad(id: number): void {
       this.router.navigate([`/editar-conv/${id}`]);
-    }
-    generarReporteMensual() {
-      this.actividadVehiculoService.getReporteMensualConVehiculo(this.mesSeleccionado).subscribe(
-        (blob: Blob) => {
-          // Crear un enlace para descargar el PDF
-          const url = window.URL.createObjectURL(blob);
-/*           const a = document.createElement('a');
-          a.href = url;
-          a.download = `reporte_actividades_${this.mesSeleccionado}.pdf`;
-          a.click(); */
-          window.open(url);
-          window.URL.revokeObjectURL(url);
-        },
-        (error) => {
-          console.error('Error al generar el reporte:', error);
-        }
-      );
     }
     
   

@@ -1,0 +1,39 @@
+
+<!-- <div id="mapa-critico">
+     Aquí se incrusta el SVG 
+</div> -->
+
+<div class="mapa-container">
+    <canvas #canvas width="800" height="980"></canvas>
+    <div *ngIf="!datos.length" class="loading-message">
+        Cargando el mapa...
+    </div>
+</div>
+
+<!-- <div class="mapa-container">
+    <canvas #canvasFondo width="800" height="980"></canvas>
+    <canvas #canvasPuntos width="800" height="980"></canvas>
+    <div *ngIf="!datos.length" class="loading-message">
+        Cargando el mapa...
+    </div>
+</div> -->
+
+
+<!-- <div class="mapa-container">
+    <canvas #canvas width="800" height="600"></canvas>
+    <div *ngIf="!datos.length" class="loading-message">
+        Cargando el mapa...
+    </div>
+</div> -->
+
+<!-- template del componente -->
+<!-- <div class="map-container">
+    <img src="assets/images/potosi-mapa-blanco2.svg" alt="Mapa de Potosí" class="map-image" #mapImage />
+  
+
+    <div *ngFor="let punto of puntos" 
+         [ngStyle]="{ top: punto.y + 'px', left: punto.x + 'px' }" 
+         class="punto"
+         [title]="punto.info">
+    </div>
+</div> -->

@@ -35,6 +35,11 @@ import { ActividadesComponent } from './layouts/actividades/actividades.componen
 import { ActividadConvEditComponent } from './components/actividad-vehiculo/actividad-conv-edit/actividad-conv-edit.component';
 import { MiniCalendarioComponent } from './components/herramientas/mini-calendario/mini-calendario.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { ReporteConVehiculoComponent } from './components/reports/reporte-con-vehiculo/reporte-con-vehiculo.component';
+import { ReportesComponent } from './pages/reportes/reportes.component';
+import { MapaCriticoComponent } from './components/mapa-critico/mapa-critico.component';
+import { FooterComponent } from './layouts/footer/footer.component';
+import { CalendarioActividadesComponent } from './components/herramientas/calendario-actividades/calendario-actividades.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +68,12 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
     ActividadesComponent,
     ActividadConvEditComponent,
     MiniCalendarioComponent,
-    NavbarComponent
+    NavbarComponent,
+    ReporteConVehiculoComponent,
+    ReportesComponent,
+    MapaCriticoComponent,
+    FooterComponent,
+    CalendarioActividadesComponent
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,19 @@ export class CabeceraComponent {
       actividadesSection.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  scrollToMapa() {
+    const mapaSection = document.getElementById('mapa-section');
+    if (mapaSection) {
+      mapaSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
+  scrollToCalendario() {
+    const calendarioSection = document.getElementById('calendario-section');
+    if (calendarioSection) {
+      calendarioSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
   goToInicio() {
     this.router.navigate(['/inicio']).then(() => {
       window.scrollTo(0, 0); // Desplazarse a la parte superior
