@@ -54,6 +54,8 @@ export class ActividadVehiculoFormComponent implements OnInit {
       centro_salud_id: ['', Validators.required],
       tecnico_a_cargo: ['', Validators.required],
       detalles_adicionales: ['', Validators.required],
+      //estado_aprobacion: ['pendiente'],
+      //observaciones: [''],
       usuario_id: [''], // Este campo se llenará automáticamente con el ID del usuario
       //estado_aprobacion: [''], // Este campo se llenará automáticamente con el valor 'pendiente'
       
@@ -169,6 +171,13 @@ export class ActividadVehiculoFormComponent implements OnInit {
   onSubmit(): void {
     if (this.actividadForm.valid) {
       this.loading = true;
+      // Agregar observaciones solo si se proporciona
+      /* const formData = {
+        ...this.actividadForm.value,
+        observaciones: this.actividadForm.get('observaciones')?.value || null, // Asignar null si no hay valor
+      
+      };
+      console.log('Datos a enviar:', formData); // Verifica los datos */
       this.actividadService.createActividadVehiculo(this.actividadForm.value).subscribe({
         next: () => {
           console.log('actividad registrada exitosamente:');

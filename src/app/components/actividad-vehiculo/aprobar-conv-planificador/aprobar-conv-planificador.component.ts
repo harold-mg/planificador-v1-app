@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 export class AprobarConvPlanificadorComponent implements OnInit {
   actividades: any[] = [];
   todasActividades: any[] = [];
+  mostrarObservacion: boolean = false; // Control para el formulario emergente
+  observacion: string = ''; // Texto de la observación para rechazar
+  actividadIdParaRechazar: number | null = null; // ID de la actividad a rechazar
   constructor(
     private actividadVehiculoService: ActividadVehiculoService, // Usa el servicio correcto
     private authService: AuthService,
@@ -52,7 +55,7 @@ export class AprobarConvPlanificadorComponent implements OnInit {
   mostrarPendientes(): void {
     // Filtrar actividades que están pendientes de aprobación por el planificador
     this.actividades = this.todasActividades.filter(
-      (actividad: any) => actividad.nivel_aprobacion === 'planificador' && actividad.estado_aprobacion !== 'aprobado'
+      (actividad: any) => actividad.nivel_aprobacion === 'planificador' && actividad.estado_aprobacion === 'pendiente'
     );
   }
 
@@ -60,6 +63,11 @@ export class AprobarConvPlanificadorComponent implements OnInit {
     // Filtrar actividades que ya fueron aprobadas
     this.actividades = this.todasActividades.filter(
       (actividad: any) => actividad.estado_aprobacion === 'aprobado'
+    );
+  }
+  mostrarRechazadas(): void {
+    this.actividades = this.todasActividades.filter(
+      (actividad: any) => actividad.estado_aprobacion === 'rechazado'
     );
   }
   obtenerDescripcionOperacion(actividad: any): string {
@@ -77,17 +85,30 @@ export class AprobarConvPlanificadorComponent implements OnInit {
       }
     );
   }
-
-  rechazarActividad(id: number): void {
-    this.actividadVehiculoService.rechazarActividad(id).subscribe(
-      response => {
-        this.toastr.success('Actividad rechazada correctamente por el planificador', 'Rechazo');
-        this.obtenerActividadesPendientes(); // Recargar actividades pendientes tras rechazar
-      },
-      error => {
-        this.toastr.error('Error al rechazar la actividad', 'Error');
-      }
-    );
+  abrirFormularioRechazo(id: number): void {
+    this.mostrarObservacion = true;
+    this.actividadIdParaRechazar = id;
+  }
+  rechazarActividadConObservacion(): void {
+    if (this.actividadIdParaRechazar && this.observacion) {
+      this.actividadVehiculoService.rechazarActividad(this.actividadIdParaRechazar, this.observacion).subscribe(
+        response => {
+          this.toastr.success('Actividad rechazada correctamente', 'Rechazo');
+          this.obtenerActividadesPendientes();
+          this.mostrarObservacion = false;
+          this.observacion = '';
+          this.actividadIdParaRechazar = null;
+        },
+        error => {
+          this.toastr.error('Error al rechazar la actividad', 'Error');
+        }
+      );
+    }
+  }
+  cancelarRechazo(): void {
+    this.mostrarObservacion = false;
+    this.observacion = '';
+    this.actividadIdParaRechazar = null;
   }
   obtenerEstado(actividad: any): string {
     if (actividad.estado_aprobacion === 'aprobado') {

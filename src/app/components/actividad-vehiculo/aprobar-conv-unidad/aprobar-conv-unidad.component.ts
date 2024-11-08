@@ -84,7 +84,8 @@ export class AprobarConvUnidadComponent implements OnInit {
   }
 
   rechazarActividad(id: number): void {
-    this.actividadVehiculoService.rechazarActividad(id).subscribe(
+    const observacion = "Razón del rechazo";
+    this.actividadVehiculoService.rechazarActividad(id, observacion).subscribe(
       response => {
         this.toastr.success('Actividad rechazada correctamente', 'Rechazo');
         this.obtenerActividadesPendientes(); // Recargar actividades pendientes tras rechazar

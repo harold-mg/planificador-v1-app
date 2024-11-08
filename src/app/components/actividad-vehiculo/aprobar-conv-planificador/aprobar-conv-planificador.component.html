@@ -2,44 +2,59 @@
 <div class="actividad-list">
     <h2>Actividades Pendientes de Aprobación - Planificador</h2>
       <!-- Botones para filtrar -->
-    <div class="filtros">
-      <button class="btn btn-secondary" (click)="mostrarTodas()">Ver Todas</button>
-      <button class="btn btn-primary" (click)="mostrarPendientes()">Ver Pendientes</button>
-      <button class="btn btn-success" (click)="mostrarAprobadas()">Ver Aprobadas</button>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th> <!-- Número de actividad -->
-          <th>Área</th>
-          <th>Código POA</th>
-          <th>Operación</th>
-          <th>Fecha Inicio</th>
-          <th>Fecha Fin</th>
-          <th>Lugar</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let actividad of actividades; let i = index"> <!-- i es el índice de la lista -->
-          <td>{{ i + 1 }}</td> <!-- Número secuencial -->
-          <td>{{ actividad.usuario.rol === 'responsable_area' ? actividad.usuario.area?.nombre : actividad.usuario.unidad?.nombre || 'Sin nombre de área/unidad' }} </td>
-          <td>{{ actividad.poa?.codigo_poa || 'Sin POA' }}</td> <!-- Código POA -->
-          <td>{{ obtenerDescripcionOperacion(actividad) }}</td>
-          <td>{{ actividad.fecha_inicio }}</td> <!-- Fecha de inicio -->
-          <td>{{ actividad.fecha_fin }}</td> <!-- Fecha de fin -->
-          <td>{{ actividad.centro_salud.municipio.nombre}}</td>
-          <td>{{ obtenerEstado(actividad) }}</td>
-          <td>
-            <button class="btn btn-success" (click)="aprobarActividad(actividad.id)">Aprobar</button>
-            <button class="btn btn-danger" (click)="rechazarActividad(actividad.id)">Rechazar</button>
-            <!-- <button class="btn btn-warning" (click)="modificarActividad(actividad)">Modificar</button> -->
-            <button class="btn btn-warning" (click)="modificarActividad(actividad.id)">Modificar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      
+      <div class="filtros">
+        <button class="btn btn-secondary" (click)="mostrarTodas()">Ver Todas</button>
+        <button class="btn btn-primary" (click)="mostrarPendientes()">Ver Pendientes</button>
+        <button class="btn btn-success" (click)="mostrarAprobadas()">Ver Aprobadas</button>
+        <button class="btn btn-danger" (click)="mostrarRechazadas()">Ver Rechazadas</button>
+      </div>
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Área</th>
+            <th>Código POA</th>
+            <th>Operación</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Lugar</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let actividad of actividades; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ actividad.usuario.rol === 'responsable_area' ? actividad.usuario.area?.nombre : actividad.usuario.unidad?.nombre || 'Sin nombre de área/unidad' }}</td>
+            <td>{{ actividad.poa?.codigo_poa || 'Sin POA' }}</td>
+            <td>{{ obtenerDescripcionOperacion(actividad) }}</td>
+            <td>{{ actividad.fecha_inicio }}</td>
+            <td>{{ actividad.fecha_fin }}</td>
+            <td>{{ actividad.centro_salud.municipio.nombre }}</td>
+            <td>{{ obtenerEstado(actividad) }}</td>
+            <td>
+              <button class="btn btn-success" (click)="aprobarActividad(actividad.id)">Aprobar</button>
+              <button class="btn btn-danger" (click)="abrirFormularioRechazo(actividad.id)">Rechazar</button>
+              <button class="btn btn-warning" (click)="modificarActividad(actividad.id)">Modificar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <!-- Formulario emergente de observación -->
+      <div *ngIf="mostrarObservacion" class="modal">
+        <div class="modal-content">
+          <h3>Observación para rechazar</h3>
+          <textarea [(ngModel)]="observacion" rows="4" placeholder="Escribe la observación"></textarea>
+          <div class="modal-actions">
+            <button class="btn btn-danger" (click)="rechazarActividadConObservacion()">Rechazar Actividad</button>
+            <button class="btn btn-secondary" (click)="cancelarRechazo()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+      
     <app-reporte-con-vehiculo></app-reporte-con-vehiculo>
   </div>
   

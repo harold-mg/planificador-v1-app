@@ -55,9 +55,12 @@ export class ActividadVehiculoService {
   }
 
   // Rechazar actividad (puede ser por parte del responsable de unidad o del planificador)
-  rechazarActividad(id: number): Observable<any> {
+/*   rechazarActividad(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}/rechazar`;
     return this.http.post<any>(url, {});
+  } */
+  rechazarActividad(id: number, observaciones: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}/rechazar`, { observaciones });
   }
 
 /*   modificarActividad(id: number, actividad: any): Observable<any> {
