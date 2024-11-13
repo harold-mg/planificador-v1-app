@@ -47,6 +47,7 @@ export class ActividadConvEditComponent implements OnInit {
       tecnico_a_cargo: ['', Validators.required],
       detalles_adicionales: ['', Validators.required],
       usuario_id: [''], // Este campo se llenará automáticamente con el ID del usuario
+      //estado_aprobacion: ['pendiente'],
     });
   }
 
@@ -152,6 +153,7 @@ export class ActividadConvEditComponent implements OnInit {
   onSubmit(): void {
     if (this.actividadForm.valid) {
       this.loading = true;
+      console.log("Datos del formulario:", this.actividadForm.value); // Agrega un log para verificar los datos
       this.actividadService.updateActividadVehiculo(this.actividadId, this.actividadForm.value).subscribe({
         next: () => {
           console.log('Actividad modificada exitosamente');

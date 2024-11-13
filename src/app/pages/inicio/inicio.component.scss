@@ -15,3 +15,25 @@ main {
 #potosi-mapa {
   height: 700px;
 }
+
+/* En pantallas pequeñas (móviles), mostramos el mini calendario */
+@media (max-width: 768px) {
+/*   body {
+    margin: 0;
+    width: 100%;
+  } */
+
+  app-mini-calendario {
+    display: none; /* El mini calendario se muestra en pantallas pequeñas */
+  }
+  app-mapa-critico {
+    width: 300px;
+    
+  }
+  canvas{
+    width: 300px;
+  }
+  app-calendario-actividades{
+    display: none;
+  }
+}

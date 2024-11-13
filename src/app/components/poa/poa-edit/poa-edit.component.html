@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Editar POA</h2>
+  
+    <form [formGroup]="poaForm" (ngSubmit)="actualizarPoa()">
+      <div class="form-group">
+        <label for="nombre">Nombre del POA</label>
+        <input type="text" id="codigo_poa" class="form-control" formControlName="codigo_poa">
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="poaForm.invalid">Guardar Cambios</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </form>
+  </div>
+  

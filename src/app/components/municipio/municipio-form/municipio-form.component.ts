@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MunicipioService } from 'src/app/services/municipio.service';
-import { CoordinacionService } from '../../services/coordinacion.service';
+import { CoordinacionService } from 'src/app/services/coordinacion.service';
 
 @Component({
   selector: 'app-municipio-form',

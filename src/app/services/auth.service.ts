@@ -54,6 +54,36 @@ export class AuthService {
       }
     });
   }
+  // Obtener la lista de usuarios
+  getUsuarios(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/user`);
+  }
+  // Obtener un usuario por ID
+  getUsuario(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/usuarios/${id}`, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    });
+  }
+  
+  // Actualizar los datos de un usuario
+  updateUsuario(id: string, userData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/usuarios/${id}`, userData, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    });
+  }
+  
+  // Método para obtener la lista de todos los usuarios
+  getAllUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/usuarios`, {
+      headers: {
+        Authorization: `Bearer ${this.getToken()}`
+      }
+    });;
+  }
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
@@ -64,5 +94,6 @@ export class AuthService {
     // Método para obtener los datos completos del usuario autenticado
   obtenerUsuarioActual(): Observable<any> {
     return this.getUser();
+    
   }
 }

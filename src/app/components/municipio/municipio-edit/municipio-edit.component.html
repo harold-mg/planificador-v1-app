@@ -1,0 +1,19 @@
+<form [formGroup]="municipioForm" (ngSubmit)="actualizarMunicipio()">
+    <div class="form-group">
+      <label for="nombre">Nombre del Municipio</label>
+      <input type="text" id="nombre" class="form-control" formControlName="nombre">
+    </div>
+  
+    <div class="form-group">
+      <label for="coordinacion_id">Coordinación</label>
+      <select id="coordinacion_id" class="form-control" formControlName="coordinacion_id">
+        <option *ngFor="let coordinacion of coordinaciones" [value]="coordinacion.id">
+          {{ coordinacion.nombre }}
+        </option>
+      </select>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="municipioForm.invalid">Guardar Cambios</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+  </form>
+  

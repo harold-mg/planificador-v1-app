@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Lista de POAs</h2>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre del POA</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let poa of poas">
+          <td>{{ poa.id }}</td>
+          <td>{{ poa.codigo_poa }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editarPoa(poa.id)">Editar</button>
+            <button class="btn btn-danger" (click)="eliminarPoa(poa.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br><a routerLink="/inicio">inicio</a>
+  </div>
+  

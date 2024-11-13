@@ -4,7 +4,7 @@
       <!-- Botones para filtrar -->
       
       <div class="filtros">
-        <button class="btn btn-secondary" (click)="mostrarTodas()">Ver Todas</button>
+        <button class="btn btn-secondary" (click)="mostrarTodas()">Ver Todas del Mes</button>
         <button class="btn btn-primary" (click)="mostrarPendientes()">Ver Pendientes</button>
         <button class="btn btn-success" (click)="mostrarAprobadas()">Ver Aprobadas</button>
         <button class="btn btn-danger" (click)="mostrarRechazadas()">Ver Rechazadas</button>
@@ -20,29 +20,48 @@
             <th>Fecha Inicio</th>
             <th>Fecha Fin</th>
             <th>Lugar</th>
-            <th>Estado</th>
+           <!--  <th>Estado</th> -->
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let actividad of actividades; let i = index">
+          <tr *ngFor="let actividad of actividades; let i = index"
+          [ngClass]="{
+            'actividad-aprobada': actividad.estado_aprobacion === 'aprobado',
+            'actividad-rechazada': actividad.estado_aprobacion === 'rechazado',
+            'actividad-pendiente': actividad.estado_aprobacion === 'pendiente'
+          }">
             <td>{{ i + 1 }}</td>
             <td>{{ actividad.usuario.rol === 'responsable_area' ? actividad.usuario.area?.nombre : actividad.usuario.unidad?.nombre || 'Sin nombre de área/unidad' }}</td>
             <td>{{ actividad.poa?.codigo_poa || 'Sin POA' }}</td>
             <td>{{ obtenerDescripcionOperacion(actividad) }}</td>
-            <td>{{ actividad.fecha_inicio }}</td>
-            <td>{{ actividad.fecha_fin }}</td>
+            <td>{{ actividad.fecha_inicio | date:'dd-MM-yyyy' }}</td>
+            <td>{{ actividad.fecha_fin | date:'dd-MM-yyyy' }}</td>
             <td>{{ actividad.centro_salud.municipio.nombre }}</td>
-            <td>{{ obtenerEstado(actividad) }}</td>
+            <!-- <td>{{ obtenerEstado(actividad) }}</td> -->
             <td>
               <button class="btn btn-success" (click)="aprobarActividad(actividad.id)">Aprobar</button>
               <button class="btn btn-danger" (click)="abrirFormularioRechazo(actividad.id)">Rechazar</button>
-              <button class="btn btn-warning" (click)="modificarActividad(actividad.id)">Modificar</button>
+              <button *ngIf="actividad.estado_aprobacion !== 'pendiente'" class="btn btn-secondary" (click)="ponerPendiente(actividad.id)">
+                Establecer Pendiente
+              </button>
+              <!-- <button class="btn btn-warning" (click)="modificarActividad(actividad.id)">Modificar</button> -->
+              <button [disabled]="actividad.estado_aprobacion !== 'pendiente'" 
+                (click)="modificarActividad(actividad.id)"
+                class="btn btn-primary">
+              Modificar
+            </button>
+    
+            <!-- Mensaje de advertencia si no está en 'pendiente' -->
+            <!-- <span *ngIf="actividad.estado_aprobacion !== 'pendiente'" class="text-warning">
+              actividad "Pendiente".
+            </span> -->
             </td>
           </tr>
         </tbody>
       </table>
       
+      <!-- Formulario emergente de observación -->
       <!-- Formulario emergente de observación -->
       <div *ngIf="mostrarObservacion" class="modal">
         <div class="modal-content">
@@ -54,8 +73,12 @@
           </div>
         </div>
       </div>
+
       
     <app-reporte-con-vehiculo></app-reporte-con-vehiculo>
+    <app-actividades></app-actividades>
   </div>
+<app-calendario-actividades id="calendario-section"></app-calendario-actividades> <!-- Añadir id aquí -->
+<app-footer></app-footer>
   
   

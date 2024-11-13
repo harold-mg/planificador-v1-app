@@ -9,10 +9,14 @@ import { AuthService } from '../../services/auth.service'; // Asegúrate de que 
 })
 export class CabeceraComponent {
   menuVisible: boolean = false;
+  usuarioMenuVisible: boolean = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   toggleMenu() {
     this.menuVisible = !this.menuVisible;
+  }
+  toggleUsuarioMenu() {
+    this.usuarioMenuVisible = !this.usuarioMenuVisible;
   }
   cerrarSesion() {
     this.authService.logout().subscribe(
@@ -50,5 +54,12 @@ export class CabeceraComponent {
       window.scrollTo(0, 0); // Desplazarse a la parte superior
     });
   }
+  goTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Esto permite el desplazamiento suave
+    });
+  }
+    
 }
 

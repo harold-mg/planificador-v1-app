@@ -1,5 +1,6 @@
 
 .container {
+  width: 50%;
   max-width: 800px;
   margin: auto;
   margin-top: 1%;
@@ -85,4 +86,10 @@ a {
 
 .app-actividades {
   margin-top: 40px;
+}
+@media (max-width: 768px) {
+  main .container{
+    margin-left: 35px;
+    width: 100%;
+  }
 }

@@ -1,38 +1,125 @@
+/* Estilos generales para pantallas pequeñas y medianas (por defecto) */
 .actividades-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 0;
-    //background-color: #EEF5FF; // Fondo de la sección
-  }
-  .actividades-row {
-    display: flex;
-    justify-content: center; // Centra los botones en la fila
-    margin: 15px 0; // Espacio entre filas
-  }
-  .actividad-button {
-    background-color: #a21515;
-    color: white;
-    border: none;
-    padding: 20px 40px;
-    font-size: 18px;
-    border-radius: 10px;
-    margin: 0 15px;
-    cursor: pointer;
-    width: 100%;
-    max-width: 400px;
-    min-height: 80px;
-    text-align: center;
-    transition: background-color 0.3s, transform 0.3s;
-  
-    &:hover {
+  display: flex;
+  flex-direction: column;  // Los botones estarán en una columna en pantallas pequeñas
+  align-items: center;
+  padding: 40px 0;
+}
+
+.actividades-row {
+  display: flex;
+  justify-content: center;  // Centra los botones en la fila
+  margin: 15px 0;  // Espacio entre filas
+}
+
+.actividad-button {
+  background-color: #a21515;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: 18px;
+  border-radius: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+  width: 100%;  // Los botones ocupan el 100% del ancho en pantallas pequeñas
+  max-width: 400px;  // Tamaño máximo de los botones
+  min-height: 80px;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.3s;
+
+  &:hover {
       background-color: #6439FF;
       transform: scale(1.05);
-    }
-  
-    &:active {
+  }
+
+  &:active {
       background-color: #00CCDD;
       transform: scale(1);
-    }
   }
-  
+}
+
+/* Estilos para pantallas grandes (>= 769px) - Dentro de la misma media query */
+@media (max-width: 769px) {
+  .actividades-container {
+      display: flex;
+      flex-direction: column;  // Los botones estarán en una columna
+      align-items: center;
+      padding: 40px 0;
+  }
+
+  .actividades-row {
+      display: flex;
+      justify-content: center;  // Centra los botones en la fila
+      margin: 15px 0;  // Espacio entre filas
+  }
+
+  .actividad-button {
+      background-color: #a21515;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      font-size: 12px;
+      border-radius: 10px;
+      margin: 0 5px;
+      cursor: pointer;
+      width: 100%;  // Los botones ocupan el 100% del ancho en pantallas pequeñas
+      max-width: 400px;  // Tamaño máximo de los botones
+      min-height: 50px;
+      text-align: center;
+      transition: background-color 0.3s, transform 0.3s;
+
+      &:hover {
+          background-color: #6439FF;
+          transform: scale(1.05);
+      }
+
+      &:active {
+          background-color: #00CCDD;
+          transform: scale(1);
+      }
+  }
+}
+
+/* Mejoras para pantallas grandes y anchas (superior a 769px) */
+@media (min-width: 769px) {
+  .actividades-container {
+      display: flex;
+      flex-direction: row;  // Cambia a fila para pantallas grandes
+      justify-content: center;  // Centra los botones horizontalmente
+      flex-wrap: wrap;  // Permite que los botones se ajusten en varias filas si es necesario
+      padding: 50px 0;
+  }
+
+  .actividades-row {
+      display: flex;
+      justify-content: flex-start;  // Alinear los botones a la izquierda
+      margin: 20px 0;  // Más espacio entre filas
+      flex-wrap: wrap;  // Permitir que los botones se ajusten si el espacio es insuficiente
+  }
+
+  .actividad-button {
+      background-color: #a21515;
+      color: white;
+      border: none;
+      padding: 15px 30px;  // Reducir padding para pantallas grandes
+      font-size: 19px;  // Aumentar el tamaño de la fuente en pantallas grandes
+      border-radius: 10px;
+      margin: 10px;  // Espacio entre los botones
+      cursor: pointer;
+      width: auto;  // Los botones no ocupan todo el ancho, solo lo necesario
+      max-width: 400px;  // Los botones tienen un tamaño máximo de 400px
+      min-height: 80px;
+      text-align: center;
+      transition: background-color 0.3s, transform 0.3s;
+
+      &:hover {
+          background-color: #6439FF;
+          transform: scale(1.05);
+      }
+
+      &:active {
+          background-color: #00CCDD;
+          transform: scale(1);
+      }
+  }
+}

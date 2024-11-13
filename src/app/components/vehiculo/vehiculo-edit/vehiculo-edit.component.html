@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Editar Vehículo</h2>
+  
+    <form [formGroup]="vehiculoForm" (ngSubmit)="actualizarVehiculo()">
+      <div class="form-group">
+        <label for="placa">Placa</label>
+        <input type="text" id="placa" class="form-control" formControlName="placa">
+      </div>
+  
+      <div class="form-group">
+        <label for="modelo">Modelo</label>
+        <input type="text" id="modelo" class="form-control" formControlName="modelo">
+      </div>
+  
+      <div class="form-group">
+        <label for="disponible">Disponible</label>
+        <input type="checkbox" id="disponible" formControlName="disponible">
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="vehiculoForm.invalid">Guardar Cambios</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </form>
+  </div>
+  

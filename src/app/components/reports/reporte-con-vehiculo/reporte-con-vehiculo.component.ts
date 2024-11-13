@@ -31,7 +31,14 @@ export class ReporteConVehiculoComponent {
   constructor(
     private reportesService: ReportesService
   ){ }
+  mostrarSeleccion() {
+    console.log('Mes seleccionado:', this.mesSeleccionado);
+    console.log('Año seleccionado:', this.yearSeleccionado);
+  }
   generarReporteMensual() {
+    console.log("Mes seleccionado:", this.mesSeleccionado);
+    console.log("Año seleccionado:", this.yearSeleccionado);
+  
     this.reportesService.getReporteMensualConVehiculo(this.mesSeleccionado, this.yearSeleccionado).subscribe(
       (blob: Blob) => {
         // Crear un enlace para descargar el PDF
@@ -41,6 +48,10 @@ export class ReporteConVehiculoComponent {
       },
       (error) => {
         console.error('Error al generar el reporte:', error);
+        if (error.error) {
+          console.error('Error detallado:', error.error);  // Imprime el mensaje de error detallado
+        }
+        alert('Hubo un error al generar el reporte. Por favor, inténtelo de nuevo más tarde.');
       }
     );
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service'; // Asegúrate de que tienes el servicio de autenticación para obtener el rol
 
 @Component({
@@ -8,11 +8,14 @@ import { AuthService } from '../../services/auth.service'; // Asegúrate de que 
 })
 export class SidebarComponent {
   userRole: string = ''; // Variable para almacenar el rol del usuario
+  sidebarOpen = false;
+  hasImage: boolean = false;
   menus = [
     {
       name: 'Usuarios',
       isOpen: false,
       routes: {
+        view: '/ver-usuario',
         create: '/registrar-usuario',
       },
       roles: ['planificador'], // Solo visible para planificadores
@@ -23,9 +26,8 @@ export class SidebarComponent {
       routes: {
         view: '/ver-unidad',
         create: '/registrar-unidad',
-        edit: '/editar-unidad/:id'
       },
-      roles: ['planificador', 'responsable_unidad', 'responsable_area'], // Visible para todos estos roles
+      roles: ['planificador'], // Visible para todos estos roles
     },
     {
       name: 'Áreas',
@@ -33,17 +35,15 @@ export class SidebarComponent {
       routes: {
         view: '/ver-area',
         create: '/registrar-area',
-        edit: '/editar-area/:id'
       },
-      roles: ['planificador', 'responsable_area'], // Solo visible para planificadores y responsables de área
+      roles: ['planificador'], // Solo visible para planificadores y responsables de área
     },
     {
       name: 'Coordinaciones',
       isOpen: false,
       routes: {
-        view: null, // No definido aún
+        view: '/ver-coordinacion', // No definido aún
         create: '/registrar-coordinacion',
-        edit: null
       },
       roles: ['planificador'],
     },
@@ -51,49 +51,44 @@ export class SidebarComponent {
       name: 'Municipios',
       isOpen: false,
       routes: {
-        view: null, // No definido aún
+        view: '/ver-municipio',
         create: '/registrar-municipio',
-        edit: null
       },
-      roles: ['planificador', 'responsable_unidad'],
+      roles: ['planificador'],
     },
     {
       name: 'Centros de Salud',
       isOpen: false,
       routes: {
-        view: null, // No definido aún
+        view: '/ver-centro-salud',
         create: '/registrar-centro-salud',
-        edit: null
       },
-      roles: ['planificador', 'responsable_unidad'],
+      roles: ['planificador', 'responsable_unidad', 'responsable_area'],
     },
     {
       name: 'POAs',
       isOpen: false,
       routes: {
-        view: null, // No definido aún
+        view: '/ver-poa',
         create: '/registrar-poa',
-        edit: null
       },
-      roles: ['planificador'],
+      roles: ['planificador', 'responsable_unidad', 'responsable_area'],
     },
     {
       name: 'Operaciones',
       isOpen: false,
       routes: {
-        view: null, // No definido aún
+        view: '/ver-operaciones',
         create: '/registrar-operaciones',
-        edit: null
       },
-      roles: ['planificador'],
+      roles: ['planificador', 'responsable_unidad', 'responsable_area'],
     },
     {
       name: 'Vehículos',
       isOpen: false,
       routes: {
-        view: null, // No definido aún
+        view: '/ver-vehiculo',
         create: '/registrar-vehiculo',
-        edit: null
       },
       roles: ['planificador'],
     },
@@ -107,6 +102,9 @@ export class SidebarComponent {
     this.authService.getUser().subscribe(user => {
       this.userRole = user.rol; // Asegúrate de que el objeto usuario contiene el rol
     });
+  }  // Función para alternar la visibilidad del sidebar
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
   }
   getFilteredMenus() {
     return this.menus.filter(menu => menu.roles.includes(this.userRole));
@@ -114,5 +112,24 @@ export class SidebarComponent {
 
   toggleMenu(menu: any) {
     menu.isOpen = !menu.isOpen;
+  }
+  closeSidebar() {
+    this.sidebarOpen = false;
+  }
+  detectImagePresence() {
+    // Lógica para detectar si hay una imagen en la parte superior, por ejemplo:
+    const imageElement = document.querySelector('#portada_inicio');
+    this.hasImage = imageElement !== null;
+  }
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    const sidebar = document.querySelector('.sidebar');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    if (
+      sidebar && !sidebar.contains(event.target as Node) &&
+      hamburgerMenu && !hamburgerMenu.contains(event.target as Node)
+    ) {
+      this.closeSidebar();
+    }
   }
 }

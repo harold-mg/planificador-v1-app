@@ -54,4 +54,9 @@
     background-color: red; /* Cambia según la gravedad del caso */
     transform: translate(-50%, -50%); /* Centra el punto en la coordenada */
   }
-  
+  @media (max-width: 768px) {
+    .mapa-container canvas {
+      width: 400px;
+      background-color: #e3e3e3;
+    }
+  }

@@ -1,7 +1,6 @@
-<app-cabecera></app-cabecera>
 <div class="container">
-  <h2>Registrar Área</h2>
   <form [formGroup]="areaForm" (ngSubmit)="registrarArea()">
+    <h2>Registrar Área</h2>
     <label for="nombre">Nombre del área</label>
     <input type="text" id="nombre" formControlName="nombre" required>
     
@@ -11,7 +10,6 @@
     </select>
     
     <button type="submit" class="btn" [disabled]="areaForm.invalid">Registrar Área</button>
-    <br><a routerLink="/dashboard">principal</a>
-  </form>
-    
+    <br><a routerLink="/inicio">Incio</a>
+  </form>   
 </div>

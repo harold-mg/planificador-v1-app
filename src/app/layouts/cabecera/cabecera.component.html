@@ -1,20 +1,36 @@
 <header class="cabecera">
   <div class="icono-izquierda">
-    <img src="assets/images/LOGO-SEDES-ICONO.png" alt="Icono" class="icono">
+    <!-- Imagen que lleva a la página de inicio -->
+    <a [routerLink]="['/inicio']">
+      <img src="assets/images/LOGO-SEDES-ICONO.png" alt="Icono" class="icono">
+    </a>
+    <!-- Botón "Principal" al lado de la imagen -->
+    <div class="principal-btn">
+      <button class="menu-item" [routerLink]="['/inicio']">Principal</button>
+    </div>
   </div>
-  <nav class="menu">
-    <button class="menu-item" (click)="goToInicio()">INICIO</button>
+
+  <!-- Menú de navegación -->
+  <nav class="menu" [class.open]="menuVisible">
+    <button class="menu-item" (click)="goTop()">INICIO</button>
     <button class="menu-item" (click)="scrollToActividades()">ACTIVIDADES</button>
     <button class="menu-item" (click)="scrollToCalendario()">CALENDARIO</button>
     <button class="menu-item" (click)="scrollToMapa()">MAPA</button>
+
     <div class="usuario-menu">
-      <button class="menu-item usuario-boton" (click)="toggleMenu()">USUARIO</button>
-      <ul class="submenu" [class.visible]="menuVisible">
+      <button class="menu-item usuario-boton" (click)="toggleUsuarioMenu()">USUARIO</button>
+      <ul class="submenu" [class.visible]="usuarioMenuVisible">
         <li (click)="cerrarSesion()">CERRAR SESIÓN</li>
       </ul>
     </div>
-  </nav>
-</header>
 
-  
-  
+    <div class="close-menu" (click)="toggleMenu()">&#10006;</div>
+  </nav>
+
+  <!-- Botón hamburguesa (solo en móviles) -->
+  <div class="hamburger-menu1" (click)="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+</header>

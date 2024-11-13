@@ -1,0 +1,47 @@
+<div class="container">
+  <h2>Registrar Centro de Salud</h2>
+  <form [formGroup]="centroSaludForm" (ngSubmit)="registerCentroSalud()">
+    
+    <div class="form-group">
+      <label for="coordinacion">Coordinación:</label>
+      <select formControlName="coordinacion_id" (change)="onCoordinacionChange($event)" class="form-control" id="coordinacion">
+        <option value="">Seleccione una Coordinación</option>
+        <option *ngFor="let coordinacion of coordinaciones" [value]="coordinacion.id">
+          {{ coordinacion.nombre }}
+        </option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="municipio">Municipio:</label>
+      <select formControlName="municipio_id" class="form-control" id="municipio">
+        <option value="">Seleccione un Municipio</option>
+        <option *ngFor="let municipio of municipios" [value]="municipio.id">
+          {{ municipio.nombre }}
+        </option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="nombre">Nombre del Centro de Salud:</label>
+      <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre del Centro de Salud">
+    </div>
+  
+    <div class="form-group">
+      <label for="tipo">Tipo de Centro de Salud:</label>
+      <select formControlName="tipo" class="form-control" id="tipo" required>
+        <option value="">Seleccione un tipo</option>
+        <option value="hospital">Hospital</option>
+        <option value="clinica">Clínica</option>
+        <option value="puesto_salud">Puesto de Salud</option>
+        <option value="centro_comunitario">Centro Comunitario</option>
+        <option value="otros">Otros</option>
+      </select>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Registrar Centro de Salud</button>
+  </form>
+  
+  <br>
+  <a routerLink="/inicio">Inicio</a>
+</div>

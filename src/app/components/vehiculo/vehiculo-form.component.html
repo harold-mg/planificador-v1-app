@@ -1,4 +1,5 @@
-<form [formGroup]="vehiculoForm">
+<div class="container">
+  <form [formGroup]="vehiculoForm">
     <div class="form-group">
       <label for="placa">Placa:</label>
       <input formControlName="placa" type="text" class="form-control" id="placa" placeholder="Placa del Vehículo">
@@ -16,5 +17,8 @@
   
     <button (click)="registerVehiculo()" class="btn btn-primary" [disabled]="vehiculoForm.invalid">Registrar Vehículo</button>
   </form>
-  <br><a routerLink="/dashboard">principal</a>
+  <br><a routerLink="/inicio">Inicio</a>
+</div>
+
+
   

@@ -1,25 +1,25 @@
 .navbar {
-    position: sticky;
-    z-index: 999;
+    //position: sticky;
+    //z-index: 999;
     top: 50px;
     display: flex;
     flex-direction: row;
     gap: 10px;
-    background-color: #f8f9fa;
+    //background-color: #f8f9fa;
     padding: 7px;
     justify-content: flex-end;
   
     .navbar-item {
       position: relative; // Necesario para que el submenú se posicione correctamente
-      background-color: transparent;
+      background-color: #f8f9fa;
       color: #333;
-      border: none;
+      //border: none;
+      border: solid #a21515 2px;
       font-size: 16px;
       cursor: pointer;
       padding: 10px;
       border-radius: 8px;
       transition: background-color 0.3s ease;
-  
       &:hover {
         background-color: #a21515; // Efecto hover
         color: #f8f9fa;
@@ -34,15 +34,15 @@
       list-style: none;
       padding: 0;
       margin: 3% 0;
-      background-color: #fff;
+      //background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
       display: block;
-  
       li {
+        background: white;
         padding: 10px;
         cursor: pointer;
-  
         &:hover {
           background-color: #e3e3e3; // Efecto hover
         }
@@ -54,4 +54,14 @@
 }
 .navbar-item ul li{
     color: black;
+}
+
+@media (max-width: 768px){
+  .navbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+  }
+
 }

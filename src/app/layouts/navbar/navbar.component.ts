@@ -87,10 +87,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/aprobar-convehi-planificador']);
   }
   aprobarPlanificadorSinV(){
-
+    this.router.navigate(['/aprobar-sinvehi-planificador']);
   }
   aprobarPlanificadorAudi(){
-
+    this.router.navigate(['/aprobar-audi-planificador'])
   }
   aprobarPlanificadorVirt(){
 
@@ -103,10 +103,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/aprobar-convehi-unidad']);
   }
   aprobarUnidadSinV(){
-
+    this.router.navigate(['/aprobar-sinvehi-unidad']);
   }
   aprobarUnidadAudi(){
-
+    this.router.navigate(['/aprobar-audi-unidad'])
   }
   aprobarUnidadVirt(){
 

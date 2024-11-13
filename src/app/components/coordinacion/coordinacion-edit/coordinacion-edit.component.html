@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Editar Coordinación</h2>
+  
+    <form [formGroup]="coordinacionForm" (ngSubmit)="actualizarCoordinacion()">
+      <div class="form-group">
+        <label for="nombre">Nombre de Coordinación</label>
+        <input type="text" id="nombre" class="form-control" formControlName="nombre">
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="coordinacionForm.invalid">Guardar Cambios</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </form>
+  </div>
+<app-footer></app-footer>

@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Lista de Operaciones</h2>
+    
+    <!-- Tabla para mostrar las operaciones -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>POA</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterar sobre las operaciones para mostrarlas en la tabla -->
+        <tr *ngFor="let operacion of operaciones">
+          <td>{{ operacion.id }}</td>
+          <td>{{ operacion.poa?.codigo_poa }}</td> <!-- Mostrar el nombre del POA relacionado -->
+          <td>{{ operacion.descripcion }}</td>
+          <td>
+            <!-- Botón para eliminar la operación -->
+            <button (click)="eliminarOperacion(operacion.id)" class="btn btn-danger">Eliminar</button>
+            <!-- Botón para editar la operación -->
+            <button (click)="editarOperacion(operacion.id)" class="btn btn-primary">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a routerLink="/inicio">Inicio</a>
+  </div>
+  

@@ -69,6 +69,10 @@ export class ActividadVehiculoService {
   modificarActividad(id: number): void {
     this.router.navigate([`/modificar-actividad/${id}`]);
   }
+  cambiarEstadoActividad(id: number, estado: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}/estado`, { estado_aprobacion: estado });
+  }
+  
   // Método para obtener el PDF
 /*   getReporteMensual(mes: number): Observable<Blob> {
     return this.http.get(`http://127.0.0.1:8000/reporte-mensual/reporte-mensual/${mes}`, {

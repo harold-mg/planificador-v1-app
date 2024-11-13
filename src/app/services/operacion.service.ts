@@ -16,9 +16,28 @@ export class OperacionService {
     return this.http.get(`${environment.apiUrl}/poas`);
   }
 
-  // Método para registrar una operación
+  // Método para cargar todas las operaciones
+  loadOperaciones(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
+
+  // Método para obtener una operación por ID
+  getOperacionById(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+  // Método para registrar una nueva operación
   registerOperacion(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data);
+  }
+
+  // Método para actualizar una operación existente
+  updateOperacion(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
+  // Método para eliminar una operación
+  deleteOperacion(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
 

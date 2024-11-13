@@ -1,0 +1,72 @@
+<app-cabecera></app-cabecera>
+<div class="actividad-list">
+    <h2>Actividades Pendientes de Aprobación - Unidad</h2>
+
+    <!-- Botones para filtrar -->
+    <div class="filtros">
+        <button class="btn btn-secondary" (click)="mostrarTodas()">Ver Todas del Mes</button>
+        <button class="btn btn-primary" (click)="mostrarPendientes()">Ver Pendientes</button>
+        <button class="btn btn-success" (click)="mostrarAprobadas()">Ver Aprobadas</button>
+        <button class="btn btn-danger" (click)="mostrarRechazadas()">Ver Rechazadas</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Área</th>
+                <th>Código POA</th>
+                <th>Operación</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Lugar</th>
+                 <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let actividad of actividades; let i = index"
+                [ngClass]="{
+                  'actividad-aprobada': actividad.nivel_aprobacion === 'planificador' && actividad.estado_aprobacion === 'pendiente',
+                  'actividad-rechazada': actividad.estado_aprobacion === 'rechazado',
+                  'actividad-pendiente': actividad.nivel_aprobacion === 'responsable_unidad' && actividad.estado_aprobacion === 'pendiente',
+                }">
+                <td>{{ i + 1 }}</td>
+                <td>{{ actividad.usuario.rol === 'responsable_area' ? actividad.usuario.area?.nombre : actividad.usuario.unidad?.nombre || 'Sin nombre de área/unidad' }}</td>
+                <td>{{ actividad.poa?.codigo_poa || 'Sin POA' }}</td>
+                <td>{{ obtenerDescripcionOperacion(actividad) }}</td>
+                <td>{{ actividad.fecha_inicio | date:'dd-MM-yyyy' }}</td>
+                <td>{{ actividad.fecha_fin | date:'dd-MM-yyyy' }}</td>
+                <td>{{ actividad.centro_salud.municipio.nombre }}</td>
+                <td>{{ obtenerEstado(actividad) }}</td>
+                <td>
+                    <button class="btn btn-success" (click)="aprobarActividad(actividad.id)">Aprobar</button>
+                    <button class="btn btn-danger" (click)="abrirFormularioRechazo(actividad.id)">Rechazar</button>
+                    <button *ngIf="actividad.estado_aprobacion !== 'pendiente' || actividad.nivel_aprobacion === 'planificador'" class="btn btn-secondary" (click)="ponerPendiente(actividad.id)">
+                        Establecer Pendiente
+                    </button>
+                    <button [disabled]="actividad.estado_aprobacion !== 'pendiente'" (click)="modificarActividad(actividad.id)"
+                        class="btn btn-primary">
+                        Modificar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Formulario emergente de observación (para rechazar actividad) -->
+    <div *ngIf="mostrarObservacion" class="modal">
+        <div class="modal-content">
+            <h3>Observación para rechazar</h3>
+            <textarea [(ngModel)]="observacion" rows="4" placeholder="Escribe la observación"></textarea>
+            <div class="modal-actions">
+                <button class="btn btn-danger" (click)="rechazarActividadConObservacion()">Rechazar Actividad</button>
+                <button class="btn btn-secondary" (click)="cancelarRechazo()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-reporte-con-vehiculo></app-reporte-con-vehiculo>
+<app-actividades></app-actividades>
+<app-calendario-actividades id="calendario-section"></app-calendario-actividades>
+<app-footer></app-footer>

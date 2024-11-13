@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Lista de Coordinaciones</h2>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de Coordinación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coordinacion of coordinaciones">
+          <td>{{ coordinacion.id }}</td>
+          <td>{{ coordinacion.nombre }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editarCoordinacion(coordinacion.id)">Editar</button>
+            <button class="btn btn-danger" (click)="eliminarCoordinacion(coordinacion.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-success" routerLink="/registrar-coordinacion">Crear Coordinacion</button>
+    <br><a routerLink="/inicio">Regresar al Dashboard</a>
+  </div>
+  

@@ -1,18 +1,20 @@
-<img id="portada_inicio" src="assets/images/portada_plani_1.png" alt="">
-<app-cabecera></app-cabecera>
-<app-navbar></app-navbar>
-
-<!-- APROBACION DE ACTIVIDADES -->
-<main>
-    <div class="menu-lateral">
-        <app-sidebar></app-sidebar>
-        <app-mini-calendario></app-mini-calendario>
-    </div>
-    <div class="inicio-principales">
-        <app-mapa-critico id="mapa-section"></app-mapa-critico> <!-- Añadir id aquí -->
-        <app-actividades></app-actividades>
-    </div>
-</main>
-<app-calendario-actividades id="calendario-section"></app-calendario-actividades> <!-- Añadir id aquí -->
-
-<app-footer></app-footer>
+<body>
+    <img id="portada_inicio" src="assets/images/portada_plani_1.png" alt="">
+    <app-cabecera></app-cabecera>
+    <app-navbar></app-navbar>
+    
+    <!-- APROBACION DE ACTIVIDADES -->
+    <main>
+        <div class="menu-lateral">
+            <app-sidebar></app-sidebar>
+            <app-mini-calendario></app-mini-calendario>
+        </div>
+        <div class="inicio-principales">
+            <app-actividades></app-actividades>
+            <app-mapa-critico id="mapa-section"></app-mapa-critico> <!-- Añadir id aquí -->
+        </div>
+    </main>
+    <app-calendario-actividades id="calendario-section"></app-calendario-actividades> <!-- Añadir id aquí -->
+    
+    <app-footer></app-footer>
+</body>

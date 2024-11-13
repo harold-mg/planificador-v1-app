@@ -18,7 +18,10 @@ export class MunicipioService {
   getMunicipios(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
-
+  // Obtener un municipio por su ID
+  getMunicipioById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
 
   // Obtener municipios por ID de coordinación
   getMunicipiosByCoordinacion(coordinacionId: number): Observable<any[]> {
@@ -32,15 +35,23 @@ export class MunicipioService {
       catchError(this.handleError)
     );
   }
+  // Crear un nuevo municipio
   registerMunicipio(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data).pipe(
       catchError(this.handleError)
     );
   }
-
+  // Actualizar un municipio existente
+  updateMunicipio(id: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, data);
+  }
   // Manejo de errores
   private handleError(error: any): Observable<never> {
     console.error('Error en el servicio de municipios:', error);
     return throwError(error);
+  }
+  // Eliminar un municipio
+  deleteMunicipio(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 }

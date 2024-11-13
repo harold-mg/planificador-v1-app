@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Lista de Municipios</h2>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre del Municipio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let municipio of municipios">
+          <td>{{ municipio.id }}</td>
+          <td>{{ municipio.nombre }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editarMunicipio(municipio.id)">Editar</button>
+            <button class="btn btn-danger" (click)="eliminarMunicipio(municipio.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-success" routerLink="/registrar-municipio">Crear Municipio</button>
+    <br><a routerLink="/inicio">Inicio</a>
+  </div>
+  

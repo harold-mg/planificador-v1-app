@@ -34,8 +34,10 @@ export class CentroSaludService {
 
   // Actualizar un centro de salud (opcional)
   updateCentroSalud(id: number, data: any): Observable<any> {
+    //console.log(id, data); // Verifica que el id y los datos sean correctos antes de hacer la solicitud
     return this.http.put<any>(`${this.apiUrl}/${id}`, data);
   }
+  
 
   // Eliminar un centro de salud (opcional)
   deleteCentroSalud(id: number): Observable<any> {

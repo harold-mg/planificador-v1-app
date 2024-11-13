@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Lista de Vehículos</h2>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Placa</th>
+          <th>Modelo</th>
+          <th>Disponible</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehiculo of vehiculos">
+          <td>{{ vehiculo.id }}</td>
+          <td>{{ vehiculo.placa }}</td>
+          <td>{{ vehiculo.modelo }}</td>
+          <td>{{ vehiculo.disponible ? 'Sí' : 'No' }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editarVehiculo(vehiculo.id)">Editar</button>
+            <button class="btn btn-danger" (click)="eliminarVehiculo(vehiculo.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <br><a routerLink="/inicio">Inicio</a>
+  </div>
+  

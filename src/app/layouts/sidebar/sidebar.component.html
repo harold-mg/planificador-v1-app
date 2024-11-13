@@ -1,19 +1,28 @@
+<div class="hamburger-menu" (click)="toggleSidebar()">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</div>
 
-<div class="sidebar">
+<div class="sidebar" [ngClass]="{'open': sidebarOpen}">
+  <!-- Botón de cierre en la parte superior derecha -->
+  <button class="close-btn" (click)="toggleSidebar()">X</button>
+  
   <ul>
     <li *ngFor="let menu of getFilteredMenus()">
       <button (click)="toggleMenu(menu)">{{ menu.name }}</button>
       <ul *ngIf="menu.isOpen" class="submenu">
         <li *ngIf="menu.routes.view">
-          <a [routerLink]="menu.routes.view">Ver</a>
+          <a [routerLink]="menu.routes.view">Ver/Editar</a>
         </li>
         <li>
           <a [routerLink]="menu.routes.create">Crear</a>
         </li>
-        <li *ngIf="menu.routes.edit">
+        <!-- <li *ngIf="menu.routes.edit">
           <a [routerLink]="menu.routes.edit">Editar/Eliminar</a>
-        </li>
+        </li> -->
       </ul>
     </li>
   </ul>
 </div>
+

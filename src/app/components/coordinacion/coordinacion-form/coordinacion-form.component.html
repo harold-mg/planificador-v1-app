@@ -1,0 +1,13 @@
+<div class="container">
+  <form [formGroup]="coordinacionForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="nombre">Nombre de la Coordinación:</label>
+        <input type="text" id="nombre" formControlName="nombre" class="form-control" />
+        <div *ngIf="getErrorMessage('nombre')" class="text-danger">{{ getErrorMessage('nombre') }}</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <br><a routerLink="/inicio">Inicio</a>
+    <div *ngIf="errors.general" class="text-danger">{{ errors.general }}</div>
+  </form>
+</div>
+  

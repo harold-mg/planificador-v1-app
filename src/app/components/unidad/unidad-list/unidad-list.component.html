@@ -1,26 +1,25 @@
 <div class="container">
-    <h2>Lista de Unidades</h2>
+  <h2>Lista de Unidades</h2>
   
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre de la Unidad</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let unidad of unidades">
-          <td>{{ unidad.id }}</td>
-          <td>{{ unidad.nombre }}</td>
-          <td>
-            <!-- Aquí puedes agregar botones para editar o eliminar -->
-            <button class="btn btn-primary" (click)="editarUnidad(unidad.id)">Editar</button>
-            <button class="btn btn-danger" (click)="eliminarUnidad(unidad.id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  <br><a routerLink="/dashboard">principal</a>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre de la Unidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let unidad of unidades">
+        <td>{{ unidad.id }}</td>
+        <td>{{ unidad.nombre }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="editarUnidad(unidad.id)">Editar</button>
+          <button class="btn btn-danger" (click)="eliminarUnidad(unidad.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   
+  <br><a routerLink="/inicio" class="btn btn-secondary">Inicio</a>
+</div>
