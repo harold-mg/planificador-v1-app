@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActividadSinVehiculoService } from 'src/app/services/actividad-sin-vehiculo.service'; // Servicio para manejar actividades
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './actividad-sin-vehiculo-form.component.html',
   styleUrls: ['./actividad-sin-vehiculo-form.component.scss']
 })
-export class ActividadSinVehiculoFormComponent implements OnInit {
+export class ActividadSinVehiculoFormComponent implements OnInit, AfterViewChecked {
   actividadForm: FormGroup;
   poas: any[] = [];
   selectedCoordinacionId: number | null = null;
@@ -24,10 +24,11 @@ export class ActividadSinVehiculoFormComponent implements OnInit {
   centrosSalud: any[] = [];
   loading = false;
   isPlanificador: boolean = false;
-  codigoPoa: string = 'USPS9-2'; // Ejemplo de código POA predefinido
-  operaciones: any[] = []; // Para almacenar las operaciones en un array
-  selectedOperacion: string = ''; // Para almacenar la operación seleccionada
+  codigoPoa: string = '';
+  operaciones: any[] = [];
+  selectedOperacion: string = '';
   selectedOperacionId: number | null = null;
+  cdr: any;
 
   constructor(
     private fb: FormBuilder,
@@ -52,18 +53,24 @@ export class ActividadSinVehiculoFormComponent implements OnInit {
       centro_salud_id: ['', Validators.required],
       tecnico_a_cargo: ['', Validators.required],
       detalles_adicionales: ['', Validators.required],
-      usuario_id: [''], // Este campo se llenará automáticamente con el ID del usuario
+      usuario_id: [''],
     });
   }
 
   ngOnInit(): void {
+    this.mostrarSiguienteMes();
     this.loadPoas();
     this.loadCoordinaciones();
     this.loadMunicipios();
     this.loadCentrosSalud();
     this.setUsuarioId();
   }
-
+  ngAfterViewChecked(): void {
+    // Este método se ejecutará después de que Angular haya renderizado la vista,
+    // asegurándonos de que las restricciones de fecha se apliquen cada vez que el formulario se vuelva a renderizar.
+    this.mostrarSiguienteMes();
+    this.cdr.detectChanges();
+  }
   setUsuarioId(): void {
     this.authService.getUser().subscribe(user => {
       if (user && user.id) {
@@ -100,7 +107,39 @@ export class ActividadSinVehiculoFormComponent implements OnInit {
         this.operaciones = [];  // Limpiar operaciones si no hay POA seleccionado
     }
   }
+  mostrarSiguienteMes() {
+    const today = new Date();
+    const currentMonth = today.getMonth(); // 0 = January, 1 = February, etc.
+    const currentYear = today.getFullYear();
 
+    // Calcular el primer día del mes siguiente
+    const nextMonthStart = new Date(currentYear, currentMonth + 1, 1); // Primer día del siguiente mes
+
+    // Calcular el último día del mes siguiente
+    const nextMonthEnd = new Date(currentYear, currentMonth + 2, 0); // Último día del siguiente mes
+
+    // Formatear las fechas para el formato YYYY-MM-DD
+    const startDate = nextMonthStart.toISOString().split('T')[0];
+    const endDate = nextMonthEnd.toISOString().split('T')[0];
+
+    // Actualizar los valores mínimos y máximos para los campos de fecha
+    const fechaInicioInput = document.getElementById('fecha_inicio') as HTMLInputElement;
+    const fechaFinInput = document.getElementById('fecha_fin') as HTMLInputElement;
+
+    if (fechaInicioInput) {
+      fechaInicioInput.setAttribute('min', startDate);  // Fecha mínima = 1 de diciembre
+      fechaInicioInput.setAttribute('max', endDate);  // Fecha máxima = último día de diciembre
+    }
+
+    if (fechaFinInput) {
+      fechaFinInput.setAttribute('min', startDate);  // Fecha mínima = 1 de diciembre
+      fechaFinInput.setAttribute('max', endDate);  // Fecha máxima = último día de diciembre
+    }
+/*     this.actividadForm.patchValue({
+      fecha_inicio: startDate,
+      fecha_fin: endDate
+    }); */
+  }
   loadCoordinaciones(): void {
     this.coordinacionService.getCoordinaciones().subscribe(data => {
       this.coordinaciones = data;

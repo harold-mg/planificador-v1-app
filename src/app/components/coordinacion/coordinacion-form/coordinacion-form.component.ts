@@ -37,7 +37,9 @@ export class CoordinacionFormComponent implements OnInit {
     this.coordinacionService.createCoordinacion(this.coordinacionForm.value).subscribe(
       response => {
         console.log('Coordinación registrada exitosamente:', response);
-        this.router.navigate(['/registrar-coordinacion']); // Cambia la ruta a donde quieras redirigir
+        alert('Coordiancion registrada exitosamente');
+        //this.router.navigate(['/registrar-coordinacion']); // Cambia la ruta a donde quieras redirigir
+        this.coordinacionForm.reset();
       },
       error => {
         console.error('Error al registrar la coordinación:', error);

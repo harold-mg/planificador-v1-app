@@ -48,8 +48,10 @@ export class MunicipioFormComponent implements OnInit {
 
     this.municipioService.registerMunicipio(this.municipioForm.value).subscribe(
       response => {
-        console.log('Municipio registrado exitosamente');
-        this.router.navigate(['/registrar-municipio']); // Redirigir después del registro
+        //console.log('Municipio registrado exitosamente');
+        alert(this.municipioForm);
+        //this.router.navigate(['/registrar-municipio']); // Redirigir después del registro
+        this.municipioForm.reset();
       },
       errors => this.handleErrors(errors)
     );

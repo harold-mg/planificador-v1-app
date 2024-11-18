@@ -1,7 +1,11 @@
 
 main {
     display: flex;
+    flex-direction: column;
 }
 .inicio-principales{
     width: 100%;
+}
+.reportes{
+    display: flex;
 }

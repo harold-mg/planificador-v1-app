@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActividadVehiculoService } from 'src/app/services/actividad-vehiculo.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './actividad-vehiculo-form.component.html',
   styleUrls: ['./actividad-vehiculo-form.component.scss']
 })
-export class ActividadVehiculoFormComponent implements OnInit {
+export class ActividadVehiculoFormComponent implements OnInit, AfterViewChecked {
   actividadForm: FormGroup;
   poas: any[] = [];
   //operaciones: any[] = [];
@@ -30,6 +30,7 @@ export class ActividadVehiculoFormComponent implements OnInit {
   operaciones: any[] = []; // Para almacenar las operaciones en un array
   selectedOperacion: string = ''; // Para almacenar la operación seleccionada
   selectedOperacionId: number | null = null;
+  cdr: any;
 
   constructor(
     private fb: FormBuilder,
@@ -63,6 +64,7 @@ export class ActividadVehiculoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mostrarSiguienteMes()
     this.loadPoas();
     this.loadCoordinaciones();
     this.loadMunicipios();
@@ -71,6 +73,12 @@ export class ActividadVehiculoFormComponent implements OnInit {
     this.setUsuarioId();
     // Establecemos el estado de aprobación por defecto como 'pendiente'
     //this.actividadForm.get('estado_aprobacion')?.setValue('pendiente');
+  }
+  ngAfterViewChecked(): void {
+    // Este método se ejecutará después de que Angular haya renderizado la vista,
+    // asegurándonos de que las restricciones de fecha se apliquen cada vez que el formulario se vuelva a renderizar.
+    this.mostrarSiguienteMes();
+    this.cdr.detectChanges();  // Forzar la detección de cambios para aplicar correctamente las restricciones
   }
   setUsuarioId(): void {
     this.authService.getUser().subscribe(user => {
@@ -123,7 +131,41 @@ export class ActividadVehiculoFormComponent implements OnInit {
       this.coordinaciones = data;
     });
   }
+  mostrarSiguienteMes() {
+    const today = new Date();
+    const currentMonth = today.getMonth(); // 0 = January, 1 = February, etc.
+    const currentYear = today.getFullYear();
 
+    // Calcular el primer día del mes siguiente
+    const nextMonthStart = new Date(currentYear, currentMonth + 1, 1); // Primer día del siguiente mes
+
+    // Calcular el último día del mes siguiente
+    const nextMonthEnd = new Date(currentYear, currentMonth + 2, 0); // Último día del siguiente mes
+
+    // Formatear las fechas para el formato YYYY-MM-DD
+    const startDate = nextMonthStart.toISOString().split('T')[0];
+    const endDate = nextMonthEnd.toISOString().split('T')[0];
+
+    // Actualizar los valores mínimos y máximos para los campos de fecha
+    const fechaInicioInput = document.getElementById('fecha_inicio') as HTMLInputElement;
+    const fechaFinInput = document.getElementById('fecha_fin') as HTMLInputElement;
+
+    if (fechaInicioInput) {
+      fechaInicioInput.setAttribute('min', startDate);  // Fecha mínima = 1 de diciembre
+      fechaInicioInput.setAttribute('max', endDate);  // Fecha máxima = último día de diciembre
+    }
+
+    if (fechaFinInput) {
+      fechaFinInput.setAttribute('min', startDate);  // Fecha mínima = 1 de diciembre
+      fechaFinInput.setAttribute('max', endDate);  // Fecha máxima = último día de diciembre
+    }
+
+    // Si necesitas que el formulario tenga el valor inicial del primer día del siguiente mes:
+    this.actividadForm.patchValue({
+      fecha_inicio: startDate,
+      fecha_fin: endDate
+    });
+  }
   loadMunicipios(): void {
     this.municipioService.getMunicipios().subscribe(data => {
       this.municipios = data;

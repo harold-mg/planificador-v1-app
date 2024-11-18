@@ -1,4 +1,8 @@
 <div class="navbar">
+    <button [routerLink]="['/inicio']" class="navbar-item">
+      <img src="assets/images/icons/home1.svg" alt="Inicio" class="navbar-icon" />
+      PRINCIPAL
+    </button>
     <div class="navbar-item" (click)="toggleActividadesMenu()">
       VER MIS ACTIVIDADES
       <ul *ngIf="actividadesMenuVisible" class="submenu">

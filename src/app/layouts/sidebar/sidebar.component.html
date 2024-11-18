@@ -4,8 +4,7 @@
   <span class="bar"></span>
 </div>
 
-<div class="sidebar" [ngClass]="{'open': sidebarOpen}">
-  <!-- Botón de cierre en la parte superior derecha -->
+<div class="sidebar" [ngClass]="{'open': menuMovil}">
   <button class="close-btn" (click)="toggleSidebar()">X</button>
   
   <ul>
@@ -16,13 +15,13 @@
           <a [routerLink]="menu.routes.view">Ver/Editar</a>
         </li>
         <li>
-          <a [routerLink]="menu.routes.create">Crear</a>
+          <button (click)="openModal(menu.createComponent, menu.name)">Crear</button>
         </li>
-        <!-- <li *ngIf="menu.routes.edit">
-          <a [routerLink]="menu.routes.edit">Editar/Eliminar</a>
-        </li> -->
       </ul>
     </li>
   </ul>
 </div>
 
+<app-modal [isOpen]="modalOpen" [title]="modalTitle" (close)="closeModal()">
+  <ng-container #dynamicComponent></ng-container>
+</app-modal>

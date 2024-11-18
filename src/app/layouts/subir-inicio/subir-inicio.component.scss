@@ -1,0 +1,29 @@
+/* Estilo para el botón flotante */
+.btn-flotante {
+    position: fixed;
+    bottom: 20px;  /* Distancia desde el fondo */
+    right: 20px;   /* Distancia desde el lado derecho */
+    background-color: #a21515;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;   /* Aumenta el tamaño del botón */
+    height: 60px;  /* Aumenta el tamaño del botón */
+    font-size: 32px; /* Aumenta el tamaño de la flecha */
+    font-weight: bold; /* Aumenta el grosor de la flecha */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 1.2);
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn-flotante:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-flotante:focus {
+    outline: none;
+  }
+  

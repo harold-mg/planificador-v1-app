@@ -1,7 +1,6 @@
 <body>
     <img id="portada_inicio" src="assets/images/portada_plani_1.png" alt="">
     <app-cabecera></app-cabecera>
-    <app-navbar></app-navbar>
     
     <!-- APROBACION DE ACTIVIDADES -->
     <main>
@@ -10,9 +9,14 @@
             <app-mini-calendario></app-mini-calendario>
         </div>
         <div class="inicio-principales">
+            <app-navbar></app-navbar>
+            <app-noti-vehiculo *ngIf="mostrarNotificaciones"></app-noti-vehiculo>
+            <app-noti-sinvehiculo *ngIf="mostrarNotificaciones"></app-noti-sinvehiculo>
+            <!-- <app-notificaciones *ngIf="mostrarNotificaciones"></app-notificaciones> -->
             <app-actividades></app-actividades>
             <app-mapa-critico id="mapa-section"></app-mapa-critico> <!-- Añadir id aquí -->
         </div>
+        <app-subir-inicio></app-subir-inicio>
     </main>
     <app-calendario-actividades id="calendario-section"></app-calendario-actividades> <!-- Añadir id aquí -->
     

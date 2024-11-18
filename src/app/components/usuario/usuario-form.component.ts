@@ -59,6 +59,8 @@ export class UsuarioFormComponent implements OnInit {
   onSubmit(): void {
     this.cleanErrors();
     if (this.registerForm.invalid) {
+      //alert('Usuario registrado exitosamente');
+      this.registerForm.reset();
       return; // Si el formulario no es válido, no hacer el submit
     }
 
@@ -179,7 +181,7 @@ export class UsuarioFormComponent implements OnInit {
     console.log(response.message);
     this.registerForm.reset();
     alert('Usuario registrado exitosamente');
-    this.router.navigateByUrl('/registrar-usuario'); // Redirigir al dashboard o donde prefieras
+    //this.router.navigateByUrl('/registrar-usuario'); // Redirigir al dashboard o donde prefieras
   }
 
   // Manejar errores del servidor

@@ -73,28 +73,10 @@ export class ActividadSinVehiculoService {
       })
     );
   }
-
-/*   aprobarActividadPorPlanificador(id: number): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/${id}/aprobar-planificador`, {}).pipe(
-      catchError(error => {
-        console.error('Error en la solicitud:', error);
-        return throwError(error);
-      })
-    );
-  } */
   aprobarActividadPorPlanificador(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}/aprobar-planificador`;
     return this.http.post<any>(url, {});
   }
-/*   rechazarActividad(id: number, observaciones: string, tipo: string): Observable<any> {
-    const url = `${this.apiUrl}/${id}/${tipo}/rechazar`;
-    return this.http.put<any>(url, { observaciones }).pipe(
-      catchError(error => {
-        console.error('Error en la solicitud:', error);
-        return throwError(error);
-      })
-    );
-  } */
   rechazarActividad(id: number, observaciones: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}/rechazar`, { observaciones });
   }
@@ -111,15 +93,15 @@ export class ActividadSinVehiculoService {
       return this.http.get<any>(`${this.apiUrl}`);
     }
 
-/*     aprobarActividadPorPlanificador(id: number): Observable<any> {
-      return this.http.put<any>(`${this.apiUrl}/aprobar/${id}`, {});
-    } */
-
-    /* rechazarActividad(id: number, observacion: string): Observable<any> {
-      return this.http.put<any>(`${this.apiUrl}/rechazar/${id}`, { observacion });
-    } */
-
     cambiarEstadoActividad(id: number, estado: string): Observable<any> {
       return this.http.put<any>(`${this.apiUrl}/${id}/estado`, { estado_aprobacion: estado });
     }
+  // actividad-sin-vehiculo.service.ts
+  getActividadesSinVehiculoPorUsuario(usuarioId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/actividades-sin-vehiculo/usuario/${usuarioId}`);
+  }
+  getActividadesPorUsuario(usuarioId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/actividades/usuario/${usuarioId}`);
+  }
+
 }

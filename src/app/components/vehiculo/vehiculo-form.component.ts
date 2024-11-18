@@ -43,7 +43,7 @@ export class VehiculoFormComponent implements OnInit {
       this.vehiculoService.createVehiculo(this.vehiculoForm.value).subscribe(
         response => {
           console.log('Vehículo registrado:', response);
-          // Puedes resetear el formulario o hacer otras acciones aquí
+          alert('Vehiculo registrado correctamente');
           this.vehiculoForm.reset();
         },
         error => {

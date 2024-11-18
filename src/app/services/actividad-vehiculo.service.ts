@@ -83,7 +83,9 @@ export class ActividadVehiculoService {
     const headers = { Authorization: `Bearer ${localStorage.getItem('access_token')}` };
     return this.http.get(`http://localhost:8000/reporte-mensual-con-vehiculo/${mes}`, { headers, responseType: 'blob' });
   }
-  
+  getActividadesConVehiculoPorUsuario(usuarioId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/actividades-vehiculo/usuario/${usuarioId}`);
+  }
   
 }
 

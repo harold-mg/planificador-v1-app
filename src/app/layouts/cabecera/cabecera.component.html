@@ -4,15 +4,12 @@
     <a [routerLink]="['/inicio']">
       <img src="assets/images/LOGO-SEDES-ICONO.png" alt="Icono" class="icono">
     </a>
-    <!-- Botón "Principal" al lado de la imagen -->
-    <div class="principal-btn">
-      <button class="menu-item" [routerLink]="['/inicio']">Principal</button>
-    </div>
   </div>
-
+  
   <!-- Menú de navegación -->
   <nav class="menu" [class.open]="menuVisible">
-    <button class="menu-item" (click)="goTop()">INICIO</button>
+    <button [routerLink]="['/dashboard']" class="navbar-item">CONFI</button>
+    <!-- <button class="menu-item" (click)="goTop()">INICIO</button> -->
     <button class="menu-item" (click)="scrollToActividades()">ACTIVIDADES</button>
     <button class="menu-item" (click)="scrollToCalendario()">CALENDARIO</button>
     <button class="menu-item" (click)="scrollToMapa()">MAPA</button>

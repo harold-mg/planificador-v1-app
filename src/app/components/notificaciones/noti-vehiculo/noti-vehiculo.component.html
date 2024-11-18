@@ -1,0 +1,23 @@
+<div *ngIf="mostrarNotificacion" class="notificaciones-container">
+    <div class="modal">
+      <h3>Notificaciones de Actividades CON VEHICULOS</h3>
+      
+      <!-- Mostrar mensaje de carga mientras se están obteniendo las actividades -->
+      <div *ngIf="cargando">Cargando actividades...</div>
+      
+      <!-- Mostrar mensaje de "No hay actividades" solo si ya no está cargando y no hay actividades -->
+      <div *ngIf="!cargando && actividadesNotificacion.length === 0">
+        No hay actividades aprobadas o rechazadas.
+      </div>
+      
+      <!-- Listado de actividades notificadas si existen -->
+      <ul *ngIf="!cargando && actividadesNotificacion.length > 0">
+        <li *ngFor="let actividad of actividadesNotificacion">
+          <p>{{ obtenerDescripcionEstado(actividad) }}</p>
+        </li>
+      </ul>
+  
+      <button (click)="cerrarNotificacion()">Aceptar</button>
+    </div>
+  </div>
+  

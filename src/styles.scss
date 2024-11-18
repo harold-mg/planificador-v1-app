@@ -1,10 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~typeface-roboto/index.css';
+*{
+  box-sizing: border-box;
+}
 html, body{
     //height: 100%;
-    background-color: #e3e3e3;
+    //background-color: #e3e3e3;
     margin: 0;
     padding: 0;
 }
 main {
     display: flex;
+    //height: 100vh;
+    width: 100%;
+    background: linear-gradient(45deg, #d2001a, #7462ff, #f48e21, #23d5ab);
+    //background: linear-gradient(45deg, #00c6ff, #0072ff, #3ee1d5, #b6faff);//frios
+    //background: linear-gradient(45deg, #ff7e5f, #feb47b, #ff6a00, #f8b400);//calidos
+    //background: linear-gradient(45deg, #9c4f96, #ff5e99, #6a2b8d, #d639c2);//nocturna
+    //background: linear-gradient(45deg, #56ccf2, #6e7dff, #f5a623, #ffce54);//cielo
+    //background: linear-gradient(45deg, #ff2a68, #00d2ff, #ff004c, #8000ff);//electrica
+    //background: linear-gradient(45deg, #2a3d66, #5c6c8c, #a1c6e7, #e0e8f1);//gris y azul
+    //background: linear-gradient(45deg, #00bcd4, #ff9800, #8bc34a, #cddc39);//tropical
+    background-size: 300% 300%;
+    animation: color 12s ease-in-out infinite;
 }
+@keyframes color {
+  0%{
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0 50%;
+  }
+}
+
+/* Aplica la fuente 'Roboto' a todas las etiquetas h y label */
+h1, h2, h3, h4, h5, h6, label {
+  font-family: 'Roboto', sans-serif;
+}
+h1, h2, h3 {
+    font-weight: 700;
+}
+h4, h5, h6 {
+    font-weight: 400;
+}
+
+table {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  table th,
+  table td {
+    font-size: 14px; // Ajusta el tamaño según lo que prefieras
+    color: #333;     // Cambia el color si es necesario
+  }
+  

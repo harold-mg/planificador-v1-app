@@ -1,0 +1,11 @@
+<!-- Modal Overlay -->
+<div class="modal-overlay" *ngIf="isOpen" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()"> <!-- Evita que el clic en el contenido cierre el modal -->
+    <header>
+      <button class="close-btn" (click)="closeModal()">X</button>
+    </header>
+    
+    <!-- Contenido del Modal -->
+    <ng-content></ng-content> <!-- Aquí se inyectará el contenido (componente dentro del modal) -->
+  </div>
+</div>

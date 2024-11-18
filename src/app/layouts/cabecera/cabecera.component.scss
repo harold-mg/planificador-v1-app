@@ -3,7 +3,7 @@
   top: 0;
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #a21515; // Color de fondo para la cabecera
   padding: 5px 20px;
@@ -100,6 +100,11 @@
 
 /* Estilos para pantallas pequeñas (máximo 768px) */
 @media (max-width: 768px) {
+  .cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .menu {
     display: none;  /* Ocultamos el menú en pantallas pequeñas */
     flex-direction: column;

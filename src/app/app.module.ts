@@ -61,6 +61,12 @@ import { ReportesSinVehiculoComponent } from './components/reports/reportes-sin-
 import { ActividadAuditorioFormComponent } from './components/actividad-auditorio/actividad-auditorio-form/actividad-auditorio-form.component';
 import { AprobarAudiPlanificadorComponent } from './components/actividad-auditorio/aprobar-audi-planificador/aprobar-audi-planificador.component';
 import { AprobarAudiUnidadComponent } from './components/actividad-auditorio/aprobar-audi-unidad/aprobar-audi-unidad.component';
+import { NotiVehiculoComponent } from './components/notificaciones/noti-vehiculo/noti-vehiculo.component';
+import { NotiSinVehiculoComponent } from './components/notificaciones/noti-sinvehiculo/noti-sinvehiculo.component';
+import { NotiAuditorioComponent } from './components/notificaciones/noti-auditorio/noti-auditorio.component';
+import { NotificacionesComponent } from './layouts/notificaciones/notificaciones.component';
+import { SubirInicioComponent } from './layouts/subir-inicio/subir-inicio.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +122,12 @@ import { AprobarAudiUnidadComponent } from './components/actividad-auditorio/apr
     ActividadAuditorioFormComponent,
     AprobarAudiPlanificadorComponent,
     AprobarAudiUnidadComponent,
+    NotiVehiculoComponent,
+    NotiSinVehiculoComponent,
+    NotiAuditorioComponent,
+    NotificacionesComponent,
+    SubirInicioComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

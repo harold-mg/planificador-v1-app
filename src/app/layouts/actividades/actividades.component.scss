@@ -26,6 +26,8 @@
   min-height: 80px;
   text-align: center;
   transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 1.2);
+
 
   &:hover {
       background-color: #6439FF;
@@ -92,7 +94,7 @@
 
   .actividades-row {
       display: flex;
-      justify-content: flex-start;  // Alinear los botones a la izquierda
+      //justify-content: flex-start;  // Alinear los botones a la izquierda
       margin: 20px 0;  // Más espacio entre filas
       flex-wrap: wrap;  // Permitir que los botones se ajusten si el espacio es insuficiente
   }
