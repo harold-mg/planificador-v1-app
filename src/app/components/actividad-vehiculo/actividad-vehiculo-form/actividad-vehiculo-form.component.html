@@ -56,7 +56,7 @@
         </div>
         
         <div *ngIf="centrosSalud.length > 0">
-          <label for="centroSalud">Centro de Salud</label>
+          <label for="centroSalud">LUGAR</label>
           <select id="centroSalud" formControlName="centro_salud_id" required>
             <option value="">Seleccione Centro de Salud</option>
             <option *ngFor="let centro of centrosSalud" [value]="centro.id">{{ centro.nombre }}</option>

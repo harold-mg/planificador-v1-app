@@ -1,0 +1,86 @@
+<app-cabecera></app-cabecera>
+
+<main>
+  <app-sidebar></app-sidebar>
+
+  <div class="container">
+    <h2>Planificar Actividad Virtual</h2>
+
+    <form [formGroup]="actividadForm" (ngSubmit)="onSubmit()">
+      <!-- Selección de POA -->
+      <div class="form-group">
+        <label for="poa_id">Código POA:</label>
+        <select id="poa_id" formControlName="poa_id" (change)="onPoaSelected($event)" class="form-control">
+          <option value="">Seleccione un POA</option>
+          <option *ngFor="let poa of poas" [value]="poa.id">{{ poa.codigo_poa }}</option>
+        </select>
+      </div>
+
+      <!-- Nombre de actividad según POA -->
+      <div class="form-group" *ngIf="operaciones.length > 0">
+        <label for="detalle_operacion">Nombre de Actividad según POA:</label>
+        <select id="detalle_operacion" formControlName="detalle_operacion" class="form-control">
+          <option value="">Seleccione una operación</option>
+          <option *ngFor="let operacion of operaciones" [value]="operacion.id">{{ operacion.descripcion }}</option>
+        </select>
+        <p *ngIf="operaciones.length === 0">No hay operaciones disponibles</p>
+      </div>
+    
+      <!-- Tipo de Actividad -->
+      <div class="form-group">
+        <label for="tipo_actividad">Tipo de Actividad:</label>
+        <input type="text" id="tipo_actividad" formControlName="tipo_actividad" class="form-control" />
+      </div>
+    
+    
+      <!-- Resultado Esperado -->
+      <div class="form-group">
+        <label for="resultados_esperados">Resultado Esperado:</label>
+        <textarea id="resultados_esperados" formControlName="resultados_esperados" class="form-control"></textarea>
+      </div>
+    
+      <!-- Fecha -->
+      <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" formControlName="fecha" class="form-control">
+      </div>
+    
+      <!-- Hora de Inicio -->
+      <div class="form-group">
+        <label for="hora_inicio">Hora de Inicio:</label>
+        <input type="time" id="hora_inicio" formControlName="hora_inicio" class="form-control">
+      </div>
+    
+      <!-- Hora de Fin -->
+      <div class="form-group">
+        <label for="hora_fin">Hora de Fin:</label>
+        <input type="time" id="hora_fin" formControlName="hora_fin" class="form-control">
+      </div>
+    
+      <!-- Plataforma -->
+      <div class="form-group">
+        <label for="lugar">Plataforma:</label>
+        <input type="text" id="lugar" formControlName="lugar" class="form-control" />
+      </div>
+    
+      <!-- Técnico a Cargo -->
+      <div class="form-group">
+        <label for="tecnico_a_cargo">Técnico a Cargo:</label>
+        <textarea id="tecnico_a_cargo" formControlName="tecnico_a_cargo" class="form-control"></textarea>
+      </div>
+    
+      <!-- Participantes -->
+      <div class="form-group">
+        <label for="participantes">Participantes:</label>
+        <input type="number" id="participantes" formControlName="participantes" class="form-control" />
+      </div>
+    
+      <!-- Botón de Enviar -->
+      <button type="submit" class="btn btn-primary" [disabled]="loading">Planificar Actividad</button>
+    </form>
+    
+  </div>
+</main>
+
+<app-actividades></app-actividades>
+<app-footer></app-footer>

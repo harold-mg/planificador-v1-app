@@ -43,6 +43,9 @@ import { AprobarSinvUnidadComponent } from './components/actividad-sin-vehiculo/
 import { ActividadAuditorioFormComponent } from './components/actividad-auditorio/actividad-auditorio-form/actividad-auditorio-form.component';
 import { AprobarAudiPlanificadorComponent } from './components/actividad-auditorio/aprobar-audi-planificador/aprobar-audi-planificador.component';
 import { AprobarAudiUnidadComponent } from './components/actividad-auditorio/aprobar-audi-unidad/aprobar-audi-unidad.component';
+import { ActividadVirtualFormComponent } from './components/actividad-virtual/actividad-virtual-form/actividad-virtual-form.component';
+import { AprobarVirtUnidadComponent } from './components/actividad-virtual/aprobar-virt-unidad/aprobar-virt-unidad.component';
+import { AprobarVirtPlanificadorComponent } from './components/actividad-virtual/aprobar-virt-planificador/aprobar-virt-planificador.component';
 
 
 const routes: Routes = [
@@ -65,6 +68,7 @@ const routes: Routes = [
   { path: 'actividad-vehiculo', component: ActividadVehiculoFormComponent},
   { path: 'actividad-sin-vehiculo', component: ActividadSinVehiculoFormComponent},
   { path: 'actividad-auditorio', component: ActividadAuditorioFormComponent},
+  { path: 'actividad-virtual', component: ActividadVirtualFormComponent},
 
   //DIRECCIONES PARA VER LOS COMPONENTES
   { path: 'ver-usuario', component: UsuarioListComponent },
@@ -90,12 +94,14 @@ const routes: Routes = [
   { path: 'editar-conv/:id', component: ActividadConvEditComponent},
   { path: 'editar-vehiculo/:id', component: VehiculoEditComponent },
   //DIRECCIONES PARA APROBAR ACTIVIDADES
-  { path: 'aprobar-convehi-unidad', component: AprobarConvUnidadComponent },
   { path: 'aprobar-convehi-planificador', component: AprobarConvPlanificadorComponent},
+  { path: 'aprobar-convehi-unidad', component: AprobarConvUnidadComponent },
   { path: 'aprobar-sinvehi-planificador', component: AprobarSinVPlanificadorComponent},
   { path: 'aprobar-sinvehi-unidad', component: AprobarSinvUnidadComponent},
   { path: 'aprobar-audi-planificador', component: AprobarAudiPlanificadorComponent},
   { path: 'aprobar-audi-unidad', component: AprobarAudiUnidadComponent},
+  { path: 'aprobar-virt-planificador', component: AprobarVirtPlanificadorComponent},
+  { path: 'aprobar-virt-unidad', component: AprobarVirtUnidadComponent},
 
   //
   { path: '**', redirectTo: 'login' }  // Redirección por defecto

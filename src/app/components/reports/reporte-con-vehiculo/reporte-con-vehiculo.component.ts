@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActividadVehiculoService } from 'src/app/services/actividad-vehiculo.service';
-import { ReportesService } from '../../../services/reportes.service';
+import { ReportesService } from 'src/app/services/reportes.service';
 
 @Component({
   selector: 'app-reporte-con-vehiculo',
@@ -51,7 +51,7 @@ export class ReporteConVehiculoComponent {
         if (error.error) {
           console.error('Error detallado:', error.error);  // Imprime el mensaje de error detallado
         }
-        alert('Hubo un error al generar el reporte. Por favor, inténtelo de nuevo más tarde.');
+        alert('Hubo un error al generar el reporte. Por favor, inténtelo de nuevo más tarde. QUIZAS NO TIENE ACTIVIDAES APROBADAS PARA ESTE MES');
       }
     );
   }

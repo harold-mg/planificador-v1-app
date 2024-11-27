@@ -26,13 +26,15 @@ export class AprobarSinvUnidadComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUnidadDelUsuarioActual();
-    this.obtenerActividadesPendientes();
+    //this.obtenerActividadesPendientes();
   }
   obtenerUnidadDelUsuarioActual(): void {
     this.authService.getUser().subscribe(
       (usuario: any) => {
         if (usuario && usuario.unidad_id) {
           this.unidadId = usuario.unidad_id; // Almacena el ID de la unidad del usuario
+          console.log('la unidad es',this.unidadId)
+          this.obtenerActividadesPendientes();
         }
       },
       (error) => {
@@ -46,11 +48,8 @@ export class AprobarSinvUnidadComponent implements OnInit {
         //console.log(data); // Imprimir datos para revisar si 'poa' está presente
 
         // Guardar todas las actividades en un array aparte para poder filtrar después
-        this.todasActividades = data;
-        // Filtrar actividades: solo mostrar actividades aprobadas por unidad y pendientes de aprobación por el planificador
-        //this.actividades = data.filter((actividad: any) => actividad.nivel_aprobacion === 'planificador'); 
+        this.todasActividades = data;  
         this.filtrarActividadesPorMesSiguiente();
-        //console.log('Actividades filtradas para el planificador:', this.actividades);
       },
       error => {
         this.toastr.error('Error al cargar las actividades', 'Error');
@@ -64,20 +63,23 @@ export class AprobarSinvUnidadComponent implements OnInit {
     // Calculamos el siguiente mes
     const mesSiguiente = mesActual === 11 ? 0 : mesActual + 1; // Si estamos en diciembre (mes 11), el siguiente mes es enero (mes 0)
     const anioSiguiente = mesSiguiente === 0 ? anioActual + 1 : anioActual; // Si el siguiente mes es enero, el año debe cambiar
-
-    // Filtramos las actividades por el mes siguiente
+  
+    // Filtramos las actividades por el mes siguiente y también por la unidad_id
     this.actividades = this.todasActividades.filter((actividad: any) => {
-      // Convertimos la fecha de inicio a un objeto Date
       const fechaInicio = new Date(actividad.fecha_inicio);
-      
-      // Verificamos si la actividad es del mes siguiente
-      return fechaInicio.getMonth() === mesSiguiente && 
-      fechaInicio.getFullYear() === anioSiguiente &&
-      actividad.nivel_aprobacion === 'unidad' && actividad.estado_aprobacion === 'pendiente';
+      // Filtramos las actividades que sean del mes siguiente y que pertenezcan a la unidad del usuario
+      return (
+        fechaInicio.getMonth() === mesSiguiente &&
+        fechaInicio.getFullYear() === anioSiguiente &&
+        (actividad.nivel_aprobacion === 'planificador' || actividad.estado_aprobacion === 'pendiente' 
+          || actividad.estado_aprobacion === 'rechazado') &&
+        actividad.poa?.unidad_id === this.unidadId
+      );
     });
-
+  
     console.log('Actividades para el mes siguiente:', this.actividades);
   }
+  
   filtrarPorMesSiguiente(actividades: any[]): any[] {
     const mesActual = new Date().getMonth();
     const anioActual = new Date().getFullYear();
@@ -86,29 +88,39 @@ export class AprobarSinvUnidadComponent implements OnInit {
   
     return actividades.filter((actividad: any) => {
       const fechaInicio = new Date(actividad.fecha_inicio);
-      return fechaInicio.getMonth() === mesSiguiente && fechaInicio.getFullYear() === anioSiguiente;
+      return fechaInicio.getMonth() === mesSiguiente && 
+      fechaInicio.getFullYear() === anioSiguiente &&
+      actividad.poa?.unidad_id === this.unidadId;
     });
   }
   mostrarTodas(): void {
-      this.actividades = this.filtrarPorMesSiguiente(this.todasActividades).filter((actividad: any) =>
-        actividad.nivel_aprobacion === 'unidad'
-      );
+    this.actividades = this.filtrarPorMesSiguiente(this.todasActividades).filter((actividad: any) =>
+      (actividad.nivel_aprobacion === 'planificador' || actividad.estado_aprobacion === 'pendiente' 
+        || actividad.estado_aprobacion === 'rechazado') &&
+      actividad.poa?.unidad_id === this.unidadId // Filtra también por unidad
+    );
   }
   
   mostrarPendientes(): void {
     this.actividades = this.filtrarPorMesSiguiente(this.todasActividades).filter((actividad: any) =>
-      actividad.nivel_aprobacion === 'unidad' && actividad.estado_aprobacion === 'pendiente'
+      actividad.nivel_aprobacion === 'unidad' &&
+      actividad.estado_aprobacion === 'pendiente' &&
+      actividad.poa?.unidad_id === this.unidadId // Filtra también por unidad
     );
   }
 
   mostrarAprobadas(): void {
-    this.actividades = this.filtrarPorMesSiguiente(this.todasActividades).filter(
-      (actividad: any) => actividad.nivel_aprobacion === 'planificador' && actividad.estado_aprobacion === 'pendiente'
+    this.actividades = this.filtrarPorMesSiguiente(this.todasActividades).filter((actividad: any) =>
+      actividad.nivel_aprobacion === 'planificador' &&
+      actividad.estado_aprobacion === 'pendiente' &&
+      actividad.poa?.unidad_id === this.unidadId // Filtra también por unidad
     );
   }
   mostrarRechazadas(): void {
-    this.actividades = this.filtrarPorMesSiguiente(this.todasActividades).filter(
-      (actividad: any) =>  actividad.nivel_aprobacion === 'unidad' && actividad.estado_aprobacion === 'rechazado'
+    this.actividades = this.filtrarPorMesSiguiente(this.todasActividades).filter((actividad: any) =>
+      actividad.nivel_aprobacion === 'unidad' &&
+      actividad.estado_aprobacion === 'rechazado' &&
+      actividad.poa?.unidad_id === this.unidadId // Filtra también por unidad
     );
   }
   obtenerDescripcionOperacion(actividad: any): string {

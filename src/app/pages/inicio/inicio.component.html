@@ -1,4 +1,12 @@
 <body>
+    <app-background></app-background> <!-- Componente que gestiona el fondo -->
+    <div class="botones-container">
+        <!-- Aquí el resto de tu estructura -->
+        <button (click)="setFondoAnimado()" id="boton-animado"> </button>
+        <button (click)="setFondoEstatico()" id="boton-estatico"> </button>
+        <button (click)="setFondoDefault()" id="boton-defecto"> </button>
+    </div>
+   
     <img id="portada_inicio" src="assets/images/portada_plani_1.png" alt="">
     <app-cabecera></app-cabecera>
     
@@ -18,7 +26,10 @@
         </div>
         <app-subir-inicio></app-subir-inicio>
     </main>
-    <app-calendario-actividades id="calendario-section"></app-calendario-actividades> <!-- Añadir id aquí -->
+    <app-calendario-con-vehiculo id="calendario-section"></app-calendario-con-vehiculo> <!-- Añadir id aquí -->
+    <app-calendario-sin-vehiculo id="calendario-section"></app-calendario-sin-vehiculo> <!-- Añadir id aquí -->
+    <app-calendario-auditorio id="calendario-section"></app-calendario-auditorio> <!-- Añadir id aquí -->
+    <app-calendario-virtual id="calendario-section"></app-calendario-virtual> <!-- Añadir id aquí -->
     
     <app-footer></app-footer>
 </body>

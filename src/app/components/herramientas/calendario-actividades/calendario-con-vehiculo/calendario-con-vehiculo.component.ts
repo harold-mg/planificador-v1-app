@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ActividadVehiculoService } from 'src/app/services/actividad-vehiculo.service';
 
 @Component({
-  selector: 'app-calendario-actividades',
-  templateUrl: './calendario-actividades.component.html',
-  styleUrls: ['./calendario-actividades.component.scss']
+  selector: 'app-calendario-con-vehiculo',
+  templateUrl: './calendario-con-vehiculo.component.html',
+  styleUrls: ['./calendario-con-vehiculo.component.scss']
 })
-export class CalendarioActividadesComponent {
+export class CalendarioConVehiculoComponent {
   unidades: any[] = []; // Lista de unidades y áreas con actividades aprobadas
   diasMes: number[] = []; // Array de días del mes
   actividadesPorUnidad: any = {}; // Objeto para almacenar actividades por unidad y día

@@ -1,0 +1,30 @@
+<div class="calendario-container">
+    <div class="calendario-header">
+      <button (click)="previousMonth()">&#9664;</button>
+      <h2>{{ month + 1 }} / {{ year }}</h2>
+      <button (click)="nextMonth()">&#9654;</button>
+    </div>
+    <h4>ACTIVIDADES APROBADAS SIN VEHICULO</h4>
+    <table class="calendario-table">
+      <thead>
+        <tr>
+          <th>Unidad / Área</th>
+          <th *ngFor="let dia of diasMes">{{ dia }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let unidad of unidades">
+          <td class="columna-nombre">{{ unidad }}</td>
+          <ng-container *ngFor="let dia of diasMes; let i = index">
+            <td *ngIf="actividadesPorUnidad[unidad][i]?.span"
+                [attr.colspan]="actividadesPorUnidad[unidad][i]?.span"
+                class="actividad-celda">
+              {{ actividadesPorUnidad[unidad][i]?.poa }}
+            </td>
+            <td *ngIf="!actividadesPorUnidad[unidad][i]?.span"></td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

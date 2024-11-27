@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalendarioActividadesComponent } from './calendario-actividades.component';
+import { CalendarioActividadesComponent } from './calendario-con-vehiculo.component';
 
 describe('CalendarioActividadesComponent', () => {
   let component: CalendarioActividadesComponent;

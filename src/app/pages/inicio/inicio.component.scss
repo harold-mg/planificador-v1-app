@@ -37,3 +37,72 @@ main {
     display: none;
   }
 }
+/* Contenedor para los botones */
+.botones-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+}
+
+/* Estilo para los botones */
+#boton-animado, #boton-estatico, #boton-defecto {
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 100%;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1.1);
+  transition: background-color 0.3s ease;
+}
+#boton-animado{
+  display: flex;
+  //width: 100%;
+  background: linear-gradient(45deg, #9c4f96, #ff5e99, #6a2b8d, #d639c2);
+  background-size: 300% 300%;
+  animation: color 12s ease-in-out infinite;
+}
+#boton-estatico{
+  //width: 100%;
+  background: linear-gradient(45deg, #2a3d66, #5c6c8c, #a1c6e7, #e0e8f1);
+}
+#boton-defecto{
+  //width: 100%;
+  background-color: #e3e3e3;
+}
+/* Cambiar el color de fondo al pasar el mouse sobre los botones */
+#boton-animado:hover, 
+#boton-estatico:hover, 
+#boton-defecto:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.1);
+}
+
+/* Estilo para la imagen */
+#portada_inicio {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 1; /* Asegura que la imagen esté detrás de los botones */
+}
+
+@media (max-width: 768px){
+  .botones-container {
+    display: flex;
+    flex-direction: column;
+  }
+  #boton-animado, #boton-estatico, #boton-defecto {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+  }
+  #boton-animado{
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { BackgroundService } from 'src/app/services/background.service';
 
 @Component({
   selector: 'app-inicio',
@@ -13,7 +14,9 @@ export class InicioComponent {
   esResponsableUnidad: boolean = false;
   mostrarNotificaciones: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, 
+    private router: Router,
+    private backgroundService: BackgroundService) {}
 
   ngOnInit(): void {
     this.authService.getUser().subscribe(
@@ -51,5 +54,18 @@ export class InicioComponent {
   irAprobarUnidadConV() {
     this.router.navigate(['/aprobar-convehi-unidad']);
   }
+  // Cambiar a fondo animado
+  setFondoAnimado(): void {
+    this.backgroundService.setBackground('animated');
+  }
 
+  // Cambiar a fondo estático
+  setFondoEstatico(): void {
+    this.backgroundService.setBackground('static');
+  }
+
+  // Cambiar a fondo por defecto
+  setFondoDefault(): void {
+    this.backgroundService.setBackground('default');
+  }
 }

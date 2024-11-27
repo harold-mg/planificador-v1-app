@@ -1,14 +1,19 @@
-<app-cabecera></app-cabecera>
-<main>
-    <app-navbar></app-navbar>
-    <div class="reportes">
-        <div class="menu-lateral">
-            <app-sidebar></app-sidebar>
-            <app-mini-calendario></app-mini-calendario>
+<!-- <app-cabecera></app-cabecera> -->
+ <body>
+    <main>
+        <app-navbar></app-navbar>
+        <div class="reportes">
+            <div class="menu-lateral">
+                <app-sidebar></app-sidebar>
+                <app-mini-calendario></app-mini-calendario>
+            </div>
+            <div class="inicio-principales">
+                <app-reporte-con-vehiculo></app-reporte-con-vehiculo>
+                <app-reportes-sin-vehiculo></app-reportes-sin-vehiculo>
+                <app-reportes-auditorio></app-reportes-auditorio>
+                <app-reportes-virtual></app-reportes-virtual>
+            </div>
         </div>
-        <div class="inicio-principales">
-            <app-reporte-con-vehiculo></app-reporte-con-vehiculo>
-            <app-reportes-sin-vehiculo></app-reportes-sin-vehiculo>
-        </div>
-    </div>
-</main>
+    </main>
+    <app-footer></app-footer>
+ </body>

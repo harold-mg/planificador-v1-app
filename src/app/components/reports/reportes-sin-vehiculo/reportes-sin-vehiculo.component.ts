@@ -50,7 +50,7 @@ export class ReportesSinVehiculoComponent {
         if (error.error) {
           console.error('Error detallado:', error.error);  // Imprime el mensaje de error detallado
         }
-        alert('Hubo un error al generar el reporte. Por favor, inténtelo de nuevo más tarde.');
+        alert('Hubo un error al generar el reporte. Por favor, inténtelo de nuevo más tarde. QUIZAS NO TIENE ACTIVIDAES APROBADAS PARA ESTE MES');
       }
     );
   }

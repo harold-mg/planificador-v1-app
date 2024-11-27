@@ -35,7 +35,6 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-  
       .icon {
         display: inline-flex;
         align-items: center;
@@ -47,6 +46,7 @@
         border-radius: 50%;
         padding: 10px;
         transition: background 0.3s, color 0.3s;
+
         
         &:hover {
           background: #ffffff;
@@ -56,7 +56,7 @@
         &.address {
           margin-left: 8px;
           font-size: 1.2em;
-          width: 1.03em;
+          width: 2.03em;
         }
       }
     }

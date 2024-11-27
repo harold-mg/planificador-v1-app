@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActividadSinVehiculoService } from 'src/app/services/actividad-sin-vehiculo.service'; // Servicio para manejar actividades
 import { Router } from '@angular/router';
@@ -28,7 +28,7 @@ export class ActividadSinVehiculoFormComponent implements OnInit, AfterViewCheck
   operaciones: any[] = [];
   selectedOperacion: string = '';
   selectedOperacionId: number | null = null;
-  cdr: any;
+  //cdr: any;
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +40,7 @@ export class ActividadSinVehiculoFormComponent implements OnInit, AfterViewCheck
     private municipioService: MunicipioService,
     private authService: AuthService,
     private http: HttpClient,
+    private cdr: ChangeDetectorRef,
   ) {
     this.actividadForm = this.fb.group({
       poa_id: ['', Validators.required],

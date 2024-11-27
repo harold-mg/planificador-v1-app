@@ -93,7 +93,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/aprobar-audi-planificador'])
   }
   aprobarPlanificadorVirt(){
-
+    this.router.navigate(['/aprobar-virt-planificador'])
   }
   aprobarPlanificadorExte(){
 
@@ -109,7 +109,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/aprobar-audi-unidad'])
   }
   aprobarUnidadVirt(){
-
+    this.router.navigate(['/aprobar-virt-unidad'])
   }
   aprobarUnidadExte(){
 

@@ -29,4 +29,9 @@ export class ActividadesComponent {
       window.scrollTo(0, 0); // Desplaza a la parte superior
     });
   }
+  goToActividadVirtual() {
+    this.router.navigate(['/actividad-virtual']).then(() => {
+      window.scrollTo(0, 0); // Desplaza a la parte superior
+    });
+  }
 }

@@ -1,0 +1,18 @@
+
+<div class="reporte-mensual">
+    <h3>Generar Reporte Mensual VIRTUAL</h3>
+    <div class="seleccion-reporte">
+      <label for="mes">Selecciona el mes:</label>
+      <select id="mes" [(ngModel)]="mesSeleccionado" (ngModelChange)="mostrarSeleccion()">
+        <option *ngFor="let mes of meses" [value]="mes.value">{{ mes.label }}</option>
+      </select>
+  
+      <label for="year">Selecciona el año:</label>
+      <select id="year" [(ngModel)]="yearSeleccionado" (ngModelChange)="mostrarSeleccion()">
+        <option *ngFor="let year of anios" [value]="year">{{ year }}</option>
+      </select>
+  
+      <button (click)="generarReporteMensual()">Generar Reporte</button>
+    </div>
+  </div>
+  

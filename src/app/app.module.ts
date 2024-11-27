@@ -39,7 +39,6 @@ import { ReporteConVehiculoComponent } from './components/reports/reporte-con-ve
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { MapaCriticoComponent } from './components/mapa-critico/mapa-critico.component';
 import { FooterComponent } from './layouts/footer/footer.component';
-import { CalendarioActividadesComponent } from './components/herramientas/calendario-actividades/calendario-actividades.component';
 import { CoordinacionListComponent } from './components/coordinacion/coordinacion-list/coordinacion-list.component';
 import { CoordinacionEditComponent } from './components/coordinacion/coordinacion-edit/coordinacion-edit.component';
 import { PoaListComponent } from './components/poa/poa-list/poa-list.component';
@@ -67,6 +66,18 @@ import { NotiAuditorioComponent } from './components/notificaciones/noti-auditor
 import { NotificacionesComponent } from './layouts/notificaciones/notificaciones.component';
 import { SubirInicioComponent } from './layouts/subir-inicio/subir-inicio.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { ActividadVirtualFormComponent } from './components/actividad-virtual/actividad-virtual-form/actividad-virtual-form.component';
+import { AprobarVirtPlanificadorComponent } from './components/actividad-virtual/aprobar-virt-planificador/aprobar-virt-planificador.component';
+import { AprobarVirtUnidadComponent } from './components/actividad-virtual/aprobar-virt-unidad/aprobar-virt-unidad.component';
+import { BackgroundComponent } from './layouts/background/background.component';
+import { CalendarioConVehiculoComponent } from './components/herramientas/calendario-actividades/calendario-con-vehiculo/calendario-con-vehiculo.component';
+import { CalendarioSinVehiculoComponent } from './components/herramientas/calendario-actividades/calendario-sin-vehiculo/calendario-sin-vehiculo.component';
+import { CalendarioAuditorioComponent } from './components/herramientas/calendario-actividades/calendario-auditorio/calendario-auditorio.component';
+import { CalendarioVirtualComponent } from './components/herramientas/calendario-actividades/calendario-virtual/calendario-virtual.component';
+import { CalendarioExternaComponent } from './components/herramientas/calendario-actividades/calendario-externa/calendario-externa.component';
+import { ReportesAuditorioComponent } from './components/reports/reportes-auditorio/reportes-auditorio.component';
+import { ReportesVirtualComponent } from './components/reports/reportes-virtual/reportes-virtual.component';
+import { ReportesExternaComponent } from './components/reports/reportes-externa/reportes-externa.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +111,7 @@ import { ModalComponent } from './shared/modal/modal.component';
     ReportesComponent,
     MapaCriticoComponent,
     FooterComponent,
-    CalendarioActividadesComponent,
+    //CalendarioActividadesComponent,
     CoordinacionListComponent,
     CoordinacionEditComponent,
     PoaListComponent,
@@ -128,6 +139,18 @@ import { ModalComponent } from './shared/modal/modal.component';
     NotificacionesComponent,
     SubirInicioComponent,
     ModalComponent,
+    ActividadVirtualFormComponent,
+    AprobarVirtPlanificadorComponent,
+    AprobarVirtUnidadComponent,
+    BackgroundComponent,
+    CalendarioConVehiculoComponent,
+    CalendarioSinVehiculoComponent,
+    CalendarioAuditorioComponent,
+    CalendarioVirtualComponent,
+    CalendarioExternaComponent,
+    ReportesAuditorioComponent,
+    ReportesVirtualComponent,
+    ReportesExternaComponent,
   ],
   imports: [
     BrowserModule,

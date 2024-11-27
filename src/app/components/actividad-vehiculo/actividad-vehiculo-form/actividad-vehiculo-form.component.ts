@@ -30,7 +30,7 @@ export class ActividadVehiculoFormComponent implements OnInit, AfterViewChecked 
   operaciones: any[] = []; // Para almacenar las operaciones en un array
   selectedOperacion: string = ''; // Para almacenar la operación seleccionada
   selectedOperacionId: number | null = null;
-  cdr: any;
+  //cdr: any;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +42,7 @@ export class ActividadVehiculoFormComponent implements OnInit, AfterViewChecked 
     private municipioService: MunicipioService,
     private authService: AuthService,
     private http: HttpClient,
+    private cdr: ChangeDetectorRef,
   ) {
     this.actividadForm = this.fb.group({
       poa_id: ['', Validators.required],
@@ -161,10 +162,10 @@ export class ActividadVehiculoFormComponent implements OnInit, AfterViewChecked 
     }
 
     // Si necesitas que el formulario tenga el valor inicial del primer día del siguiente mes:
-    this.actividadForm.patchValue({
+    /* this.actividadForm.patchValue({
       fecha_inicio: startDate,
       fecha_fin: endDate
-    });
+    }); */
   }
   loadMunicipios(): void {
     this.municipioService.getMunicipios().subscribe(data => {

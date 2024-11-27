@@ -4,23 +4,33 @@
       <h2>{{ month + 1 }} / {{ year }}</h2>
       <button (click)="nextMonth()">&#9654;</button>
     </div>
+    <h4>ACTIVIDADES APROBADAS EN AUDITORIO</h4>
     <table class="calendario-table">
       <thead>
         <tr>
           <th>Unidad / Área</th>
+          <!-- Mostrar los días del mes -->
           <th *ngFor="let dia of diasMes">{{ dia }}</th>
         </tr>
       </thead>
       <tbody>
+        <!-- Iterar sobre cada unidad o área -->
         <tr *ngFor="let unidad of unidades">
           <td class="columna-nombre">{{ unidad }}</td>
+          
+          <!-- Iterar sobre cada día del mes -->
           <ng-container *ngFor="let dia of diasMes; let i = index">
-            <td *ngIf="actividadesPorUnidad[unidad][i]?.span"
+            
+            <!-- Si hay una actividad para el día y la unidad -->
+            <td *ngIf="actividadesPorUnidad[unidad] && actividadesPorUnidad[unidad][i]" 
                 [attr.colspan]="actividadesPorUnidad[unidad][i]?.span"
                 class="actividad-celda">
+              <!-- Mostrar el código POA de la actividad -->
               {{ actividadesPorUnidad[unidad][i]?.poa }}
             </td>
-            <td *ngIf="!actividadesPorUnidad[unidad][i]?.span"></td>
+            
+            <!-- Si no hay actividad para el día, mostrar una celda vacía -->
+            <td *ngIf="!actividadesPorUnidad[unidad] || !actividadesPorUnidad[unidad][i]"></td>
           </ng-container>
         </tr>
       </tbody>

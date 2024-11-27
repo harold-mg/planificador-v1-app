@@ -1,0 +1,56 @@
+.reporte-mensual {
+    background-color: #d699c5; // Fondo claro
+    border-radius: 10px; // Bordes redondeados
+    padding: 20px; // Espaciado interno
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Sombra para dar profundidad
+    //max-width: 400px; // Ancho máximo
+    margin: 20px auto; // Centrar horizontalmente y un margen vertical
+    width: 90%;
+    h3 {
+        color: #333; // Color del texto del encabezado
+        margin-bottom: 15px; // Espaciado inferior
+        text-align: center; // Centrar texto
+    }
+
+    label {
+        font-weight: bold; // Hacer la etiqueta en negrita
+        margin-bottom: 10px; // Espaciado inferior
+        display: block; // Asegurarse de que el label esté en su propia línea
+    }
+    .seleccion-reporte{
+        display: flex;
+    }
+    #mes{
+        margin-right: 2%;
+    }
+    select {
+        width: 100%; // Ancho completo
+        padding: 10px; // Espaciado interno
+        border: 1px solid #ccc; // Borde gris claro
+        border-radius: 5px; // Bordes redondeados
+        margin-bottom: 15px; // Espaciado inferior
+        font-size: 16px; // Tamaño de fuente
+        background-color: #fff; // Fondo blanco
+        transition: border-color 0.3s; // Transición suave para el borde
+
+        &:focus {
+            border-color: #007bff; // Color del borde al enfocar
+            outline: none; // Quitar contorno por defecto
+        }
+    }
+    button {
+        width: 70%; // Botón ocupa todo el ancho
+        padding: 10px; // Espaciado interno
+        border: none; // Sin borde
+        border-radius: 10px; // Bordes redondeados
+        background-color: #797a81; // Color de fondo del botón
+        color: white; // Color del texto
+        font-size: 17px; // Tamaño de fuente
+        cursor: pointer; // Cambiar cursor a puntero
+        transition: background-color 0.3s; // Transición suave para el fondo
+        margin: 0% 0% 1% 3%;
+        &:hover {
+            background-color: #49bbcf; // Color de fondo al pasar el mouse
+        }
+    }
+}
